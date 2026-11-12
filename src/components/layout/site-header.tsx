@@ -5,24 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { navigation, site } from "@/constants/site";
-import { ButtonLink } from "@/components/ui/button-link";
-import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [openOn, setOpenOn] = useState<string | null>(null);
   const open = openOn === pathname;
-  const close = () => setOpenOn(null);
-  const toggle = () => setOpenOn(open ? null : pathname);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -39,7 +36,7 @@ export function SiteHeader() {
     const focusables = panel?.querySelectorAll<HTMLElement>(
       'a[href], button:not([disabled])',
     );
-    focusables?.[0]?.focus();
+    window.setTimeout(() => focusables?.[0]?.focus(), 80);
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -72,158 +69,180 @@ export function SiteHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="shell pt-3 md:pt-4">
-        <div
-          className={cn(
-            "relative z-50 flex h-14 items-center justify-between gap-4 rounded-[10px] border px-3 transition-all duration-500 md:h-[60px] md:px-4",
-            scrolled || open
-              ? "border-white/12 bg-[rgba(6,9,13,0.82)] shadow-[0_24px_70px_-40px_rgba(0,0,0,1)] backdrop-blur-2xl"
-              : "border-white/8 bg-white/[0.025] backdrop-blur-xl",
-          )}
-        >
-          <Link
-            href="/"
-            onClick={close}
-            aria-label={`${site.name} — home`}
-            className="group flex items-center gap-2.5"
-          >
-            <Image
-              src="/brand/fenvolt-chip.png"
-              alt=""
-              width={30}
-              height={30}
-              priority
-              className="size-[26px] shrink-0 rounded-[5px] ring-1 ring-white/15 md:size-[28px]"
-            />
-            <span className="text-[1.0625rem] font-semibold tracking-[-0.03em]">
-              Fenvolt
-            </span>
-          </Link>
-
+    <>
+    <header
+      className="site-header"
+      data-scrolled={scrolled}
+      data-open={open}
+    >
+      <div className="shell">
+        <div className="flex h-16 items-center justify-between gap-4 md:grid md:h-[5.25rem] md:grid-cols-[1fr_auto_1fr]">
           <nav aria-label="Primary" className="hidden md:block">
-            <ul className="flex items-center gap-7">
-              {navigation.map((item) => (
+            <ul className="flex items-center gap-8">
+              {navigation.slice(0, 3).map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
-                    className={cn(
-                      "relative inline-block py-2 text-[0.8125rem] tracking-[-0.005em] transition-colors",
-                      isActive(item.href)
-                        ? "text-ink"
-                        : "text-muted-strong hover:text-ink",
-                    )}
+                    className="nav-link"
                   >
                     {item.label}
-                    <span
-                      aria-hidden="true"
-                      className={cn(
-                        "absolute -bottom-[3px] left-1/2 size-1 -translate-x-1/2 rounded-full bg-accent transition-all duration-300",
-                        isActive(item.href)
-                          ? "opacity-100 shadow-[0_0_10px_rgba(34,211,238,0.9)]"
-                          : "opacity-0",
-                      )}
-                    />
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
-            <div className="hidden md:block">
-              <ButtonLink href="/contact" className="btn-sm">
-                Book a call
-              </ButtonLink>
-            </div>
+          <Link
+            href="/"
+            aria-label={`${site.name} — home`}
+            className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-[-0.035em]"
+          >
+            <Image
+              src="/brand/fenvolt-chip@2x.png"
+              alt=""
+              width={32}
+              height={32}
+              priority
+              className="size-[1.55rem] shrink-0 md:size-7"
+            />
+            {site.name}
+          </Link>
+
+          <div className="flex items-center justify-end gap-5">
+            <span className="hidden items-center gap-2 text-[0.75rem] text-muted xl:flex">
+              <span aria-hidden="true" className="size-1.5 rounded-full border border-rule-strong" />
+              Taking work for Q1
+            </span>
+
+            <Link href="/contact" className="btn btn-sm hidden sm:inline-flex">
+              <span>Start a project</span>
+              <span className="btn-arrow">
+                <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.6} />
+              </span>
+            </Link>
 
             <button
               ref={triggerRef}
               type="button"
-              onClick={toggle}
+              onClick={() => setOpenOn(open ? null : pathname)}
               aria-expanded={open}
-              aria-controls="mobile-navigation"
+              aria-controls="site-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="flex size-10 items-center justify-center rounded-[6px] border border-white/12 bg-white/[0.04] md:hidden"
+              className="menu-button -mr-1 p-1"
             >
-              {open ? (
-                <X aria-hidden="true" className="size-5" strokeWidth={1.5} />
-              ) : (
-                <Menu aria-hidden="true" className="size-5" strokeWidth={1.5} />
-              )}
+              <span className="hidden sm:inline">{open ? "Close" : "Menu"}</span>
+              <span className="menu-lines" data-open={open} aria-hidden="true">
+                <span />
+                <span />
+              </span>
             </button>
           </div>
         </div>
       </div>
+    </header>
 
-      <AnimatePresence>
+    <AnimatePresence>
         {open ? (
           <motion.div
-            id="mobile-navigation"
+            id="site-menu"
             ref={panelRef}
-            initial={reduce ? undefined : { opacity: 0 }}
-            animate={reduce ? undefined : { opacity: 1 }}
-            exit={reduce ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 overflow-y-auto bg-[rgba(5,7,10,0.96)] pt-[4.75rem] backdrop-blur-2xl md:hidden"
+            initial={reduce ? undefined : { opacity: 0, y: -8 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-paper md:top-[5.25rem]"
           >
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-              <span className="absolute -top-24 right-0 size-72 rounded-full bg-accent/15 blur-[100px]" />
-            </div>
-            <nav aria-label="Mobile" className="shell relative flex min-h-full flex-col pb-10 pt-8">
-              <ul className="flex-1">
-                {navigation.map((item, i) => (
-                  <li key={item.href} className="border-b border-white/10">
-                    <Link
-                      href={item.href}
-                      onClick={close}
-                      className="flex items-baseline justify-between gap-4 py-5"
-                    >
-                      <span className="display text-[2.15rem] leading-none">
-                        {item.label}
-                      </span>
-                      <span className="mono text-[0.625rem] tracking-[0.14em] text-muted">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10 space-y-5">
-                <div onClick={close}>
-                  <ButtonLink href="/contact" className="w-full">
-                    Book a scoping call
-                  </ButtonLink>
-                </div>
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="link-line text-[0.9375rem] text-muted-strong"
-                  >
-                    {site.email}
-                  </a>
-                  <ul className="flex items-center gap-5">
-                    {site.socials.map((social) => (
-                      <li key={social.label}>
-                        <a
-                          href={social.href}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          className="link-line text-[0.8125rem] text-muted"
+            <div className="shell flex min-h-full flex-col pb-10 pt-8 md:pt-14">
+              <div className="grid flex-1 gap-12 lg:grid-cols-12 lg:gap-8">
+                <nav aria-label="Site" className="lg:col-span-8">
+                  <ul className="border-t border-rule-soft">
+                    {navigation.map((item, i) => (
+                      <li key={item.href} className="border-b border-rule-soft">
+                        <Link
+                          href={item.href}
+                          onClick={() => setOpenOn(null)}
+                          className="group flex items-baseline justify-between gap-6 py-4 md:py-5"
                         >
-                          {social.label}
-                        </a>
+                          <span className="flex items-baseline gap-4 md:gap-8">
+                            <span className="mono text-[0.625rem] text-muted-faint">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span className="display text-[clamp(2.4rem,5vw,4.6rem)] leading-none tracking-[-0.05em] transition-colors group-hover:text-muted-strong">
+                              {item.label}
+                            </span>
+                          </span>
+                          <ArrowUpRight
+                            aria-hidden="true"
+                            strokeWidth={1.25}
+                            className="size-5 shrink-0 self-center text-muted transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ink md:size-7"
+                          />
+                        </Link>
                       </li>
                     ))}
                   </ul>
+                </nav>
+
+                <div className="grid gap-8 sm:grid-cols-2 lg:col-span-3 lg:col-start-10 lg:grid-cols-1">
+                  <div>
+                    <p className="eyebrow">Direct</p>
+                    <a
+                      href={`mailto:${site.email}`}
+                      className="link-line mt-3 inline-flex text-[0.9375rem]"
+                    >
+                      {site.email}
+                    </a>
+                    <a
+                      href={`tel:${site.telephone.replace(/[^+\d]/g, "")}`}
+                      className="mt-2 block text-[0.9375rem] text-muted"
+                    >
+                      {site.telephone}
+                    </a>
+                  </div>
+
+                  <div>
+                    <p className="eyebrow">Elsewhere</p>
+                    <ul className="mt-3 space-y-2">
+                      {site.socials.map((social) => (
+                        <li key={social.label}>
+                          <a
+                            href={social.href}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="link-line text-[0.9375rem] text-muted-strong"
+                          >
+                            {social.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="eyebrow">Studio</p>
+                    <p className="mt-3 max-w-[26ch] text-[0.875rem] leading-relaxed text-muted">
+                      {site.location}. Working remotely with teams in Europe, the
+                      Gulf and North America.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </nav>
+
+              <div className="mt-12 flex flex-wrap items-end justify-between gap-4 border-t border-rule-soft pt-5">
+                <p className="text-[0.8125rem] text-muted">
+                  {"Senior engineering and applied AI — scoped and shipped by the same people."}
+                </p>
+                <Link href="/contact" className="btn btn-sm" onClick={() => setOpenOn(null)}>
+                  <span>Tell us about the work</span>
+                  <span className="btn-arrow">
+                    <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.6} />
+                  </span>
+                </Link>
+              </div>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

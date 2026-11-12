@@ -9,171 +9,187 @@ import {
   fitCriteria,
   type Service,
 } from "@/constants/services";
-import { ClosingCta } from "@/components/sections/closing-cta";
-import { RetrievalNarrowing } from "@/components/visuals/retrieval-narrowing";
-import { Reveal } from "@/components/motion/reveal";
+import { site } from "@/constants/site";
+import { ButtonLink } from "@/components/ui/button-link";
+import { PageFrame } from "@/components/visuals/page-frame";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = pageMetadata({
   title: "Services",
   description:
-    "Embedded engineers, dedicated squads and white-label delivery, plus retrieval, document intelligence, agent workflows and the backend around them.",
+    "Embedded engineers, dedicated squads and fixed-scope AI builds: retrieval, document intelligence, agent workflows, backend services and evaluation.",
   path: "/services",
 });
+
+const allServices = [...capacityServices, ...aiServices];
+
+function ServiceChapter({ service }: { service: Service }) {
+  return (
+    <article id={service.id} className="scroll-mt-28 border-t border-rule pt-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <p className="eyebrow">
+          {service.index} — {service.name}
+        </p>
+        <p className="text-[0.75rem] text-muted-faint">{service.engagement}</p>
+      </div>
+
+      <h3 className="display mt-5 max-w-[24ch] text-[clamp(1.8rem,2.9vw,2.6rem)] leading-[1.03]">
+        {service.headline}
+      </h3>
+
+      <div className="mt-7 grid gap-8 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-7">
+          <p className="max-w-[58ch] text-[0.9375rem] leading-relaxed text-muted-strong">
+            {service.what}
+          </p>
+
+          <div className="mt-7 border-t border-rule-soft pt-5">
+            <p className="eyebrow">The problem</p>
+            <p className="mt-3 max-w-[58ch] text-[0.9375rem] leading-relaxed text-muted">
+              {service.problem}
+            </p>
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 lg:col-start-8">
+          <p className="eyebrow">How it runs</p>
+          <ul className="mt-3 border-t border-rule-soft">
+            {service.approach.map((item, i) => (
+              <li
+                key={item}
+                className="flex gap-4 border-b border-rule-soft py-3.5 text-[0.875rem] leading-relaxed text-muted"
+              >
+                <span className="mono pt-1 text-[0.5625rem] text-muted-faint">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="tag-row mt-4">
+            {service.stack.slice(0, 4).map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="pb-[clamp(3rem,5vw,4rem)] pt-[calc(4rem+clamp(3rem,7vw,6rem))] md:pt-[calc(4.75rem+clamp(3rem,7vw,6rem))]">
-        <div className="shell">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule pb-4">
+      <section className="relative overflow-hidden border-b border-rule-soft">
+        <PageFrame arc />
+
+        <div className="shell relative page-top">
+          <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft pb-3">
             <p className="eyebrow">Services</p>
-            <p className="eyebrow hidden sm:block">Engagement models</p>
+            <p className="eyebrow hidden sm:block">Capacity · Applied AI</p>
           </div>
 
-          <div className="grid gap-8 pt-8 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-8">
-              <h1 className="display max-w-[18ch] text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.96]">
-                Capacity, or the system.{" "}
-                <em className="display-italic">Usually both.</em>
-              </h1>
-            </div>
-            <div className="lg:col-span-3 lg:col-start-10">
-              <p className="text-[0.9375rem] leading-relaxed text-muted">
-                Two ways to work with Fenvolt. Most engagements start with one
-                and end up using the other.
-              </p>
-              <div className="mt-5 flex flex-col gap-2">
-                <a href="#capacity" className="link-line text-[0.875rem]">
-                  A — Engineering capacity
-                </a>
-                <a href="#ai" className="link-line text-[0.875rem]">
-                  B — AI engineering
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          <h1 className="display mt-8 text-[clamp(2.9rem,7.4vw,7rem)] leading-[0.9] tracking-[-0.055em]">
+            Nine ways in.
+            <br />
+            <span className="display-dim">One practice.</span>
+          </h1>
 
-      <section
-        id="capacity"
-        aria-labelledby="capacity-title"
-        className="scroll-mt-24 border-t border-rule bg-paper-deep/30 py-[clamp(3.5rem,7vw,6rem)]"
-      >
-        <div className="shell">
-          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-5">
-              <p className="index-label">
-                <span>A</span>
-                <span aria-hidden="true" className="text-warm">
-                  /
-                </span>
-                <span>Track one</span>
-              </p>
-              <h2
-                id="capacity-title"
-                className="display mt-4 text-[clamp(2.2rem,4.2vw,3.8rem)] leading-none"
-              >
-                Engineering capacity
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="lede max-w-[50ch]">
-                Senior engineers who join your team and take tickets. We match
-                the stack and the domain before the first call, not after a
-                month of onboarding.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 border-t border-rule-strong">
-            {capacityServices.map((service, i) => (
-              <ServiceRow key={service.id} service={service} delay={i * 0.04} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="ai"
-        aria-labelledby="ai-title"
-        className="scroll-mt-24 border-t border-rule py-[clamp(3.5rem,7vw,6rem)]"
-      >
-        <div className="shell">
-          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-5">
-              <p className="index-label">
-                <span>B</span>
-                <span aria-hidden="true" className="text-warm">
-                  /
-                </span>
-                <span>Track two</span>
-              </p>
-              <h2
-                id="ai-title"
-                className="display mt-4 text-[clamp(2.2rem,4.2vw,3.8rem)] leading-none"
-              >
-                AI engineering
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <p className="lede max-w-[50ch]">
-                Systems, not prompts. We scope the failure modes first, then
-                build the pipeline, the service and the interface around it.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <RetrievalNarrowing />
-              </div>
-            </div>
-            <div className="lg:col-span-7 lg:col-start-6">
-              <div className="border-t border-rule-strong">
-                {aiServices.map((service, i) => (
-                  <ServiceRow
-                    key={service.id}
-                    service={service}
-                    delay={i * 0.03}
-                    compact
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        aria-labelledby="engagement"
-        className="border-t border-rule bg-paper-deep/35 py-[clamp(3.5rem,7vw,6rem)]"
-      >
-        <div className="shell">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Engagement models</p>
-              <h2
-                id="engagement"
-                className="display mt-4 max-w-[22ch] text-[clamp(2rem,3.6vw,3.1rem)] leading-[1.02]"
-              >
-                Four shapes. One standard.
-              </h2>
-            </div>
-            <p className="max-w-[38ch] text-[0.875rem] leading-relaxed text-muted">
-              Scope determines the shape. We quote after the technical call,
-              once the work is understood well enough to estimate honestly.
+          <div className="mt-10 grid gap-8 border-t border-rule-soft pt-7 lg:grid-cols-12 lg:gap-8">
+            <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-muted-strong lg:col-span-5">
+              Three ways to add engineering capacity, six fixed-scope AI builds.
+              The split matters: one is a person inside your process, the other
+              is a system handed over documented.
             </p>
-          </div>
 
-          <div
-            className="mt-9 overflow-x-auto"
-            role="region"
-            aria-label="Engagement models table. Scroll horizontally on narrow screens."
-            tabIndex={0}
-          >
-            <table className="spec-table min-w-[720px]">
+            <div className="lg:col-span-3 lg:col-start-7">
+              <p className="eyebrow">Engagements</p>
+              <p className="mt-3 text-[0.875rem] leading-relaxed text-muted">
+                Month to month, defined milestones, or a fixed-scope build with a
+                written estimate.
+              </p>
+            </div>
+
+            <div className="lg:col-span-3 lg:col-start-10 lg:justify-self-end">
+              <ButtonLink href="/contact">Start a scoping call</ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="shell py-[clamp(3.5rem,6vw,6rem)]">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <aside className="hidden lg:col-span-2 lg:block">
+            <nav aria-label="Service index" className="sticky top-28">
+              <p className="eyebrow">Index</p>
+              <ol className="mt-4 border-t border-rule-soft">
+                {allServices.map((service) => (
+                  <li key={service.id} className="border-b border-rule-soft">
+                    <a
+                      href={`#${service.id}`}
+                      className="group flex gap-2.5 py-2 text-[0.75rem] leading-snug text-muted transition-colors hover:text-ink"
+                    >
+                      <span className="mono text-[0.5625rem] text-muted-faint">
+                        {service.index}
+                      </span>
+                      <span>{service.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </aside>
+
+          <div className="lg:col-span-9 lg:col-start-4">
+            <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-4">
+              <h2 className="display text-[clamp(1.9rem,3.2vw,2.9rem)] leading-none">
+                Capacity
+              </h2>
+              <span className="mono text-[0.625rem] text-muted">A1 — A3</span>
+            </div>
+            <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-muted">
+              Engineers who join the team and work in your repository, under your
+              review process, from the first pull request.
+            </p>
+
+            <div className="mt-10 space-y-14">
+              {capacityServices.map((service) => (
+                <ServiceChapter key={service.id} service={service} />
+              ))}
+            </div>
+
+            <div className="mt-20 flex items-baseline justify-between gap-4 border-b border-rule pb-4">
+              <h2 className="display text-[clamp(1.9rem,3.2vw,2.9rem)] leading-none">
+                Applied AI
+              </h2>
+              <span className="mono text-[0.625rem] text-muted">B1 — B6</span>
+            </div>
+            <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-muted">
+              Fixed-scope systems that run on real records. Architecture,
+              implementation, tests and handover are part of the same engagement.
+            </p>
+
+            <div className="mt-10 space-y-14">
+              {aiServices.map((service) => (
+                <ServiceChapter key={service.id} service={service} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-rule-soft bg-paper-deep/60">
+        <div className="shell section-pad">
+          <SectionHeading
+            index="10"
+            label="Engagement models"
+            title="Four ways the work is bought."
+            note="Same engineers, same review process. The shape changes with what you need to staff."
+          />
+
+          <div className="mt-10 overflow-x-auto">
+            <table className="spec-table min-w-[46rem]">
               <thead>
                 <tr>
                   <th scope="col">Model</th>
@@ -199,166 +215,70 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section
-        aria-labelledby="fit"
-        className="border-t border-rule py-[clamp(3.5rem,7vw,6rem)]"
-      >
-        <div className="shell grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+      <section className="border-t border-rule-soft">
+        <div className="shell section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-3">
             <p className="eyebrow">Fit</p>
-            <h2
-              id="fit"
-              className="display mt-4 max-w-[16ch] text-[clamp(2rem,3.4vw,2.9rem)] leading-[1.03]"
-            >
-              A good fit is a two-way test.
+            <h2 className="display mt-5 max-w-[14ch] text-[clamp(1.9rem,3vw,2.6rem)] leading-[1.02]">
+              A clear no is part of the offer.
             </h2>
-            <p className="mt-4 max-w-[36ch] text-[0.875rem] leading-relaxed text-muted">
-              We would rather say no on the first call than discover the mismatch
-              in month two.
-            </p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-7 lg:col-start-6">
-            <FitList title="We are a good fit if" items={fitCriteria.good} tone="good" />
-            <FitList title="Probably not us if" items={fitCriteria.not} tone="not" />
-          </div>
-        </div>
-      </section>
-
-      <ClosingCta
-        index="08"
-        title={
-          <>
-            Tell us which half
-            <br className="hidden sm:block" /> is{" "}
-            <em className="display-italic">missing</em>.
-          </>
-        }
-        body="A committed roadmap with a gap, a document pipeline that keeps failing, or a system that works on the demo data and nowhere else. All three are useful starting points."
-      />
-    </>
-  );
-}
-
-function ServiceRow({
-  service,
-  delay,
-  compact,
-}: {
-  service: Service;
-  delay: number;
-  compact?: boolean;
-}) {
-  return (
-    <Reveal delay={delay}>
-      <article
-        id={service.id}
-        className="scroll-mt-24 border-b border-rule py-8 sm:py-10"
-      >
-        <div className={compact ? "grid gap-5" : "grid gap-6 lg:grid-cols-12 lg:gap-8"}>
-          <div className={compact ? "" : "lg:col-span-4"}>
-            <div className="flex items-baseline gap-3">
-              <span className="font-mono text-[0.625rem] tracking-[0.12em] text-accent-ink">
-                {service.index}
-              </span>
-              <h3 className="display text-[clamp(1.6rem,2.6vw,2.2rem)] leading-none">
-                {service.name}
-              </h3>
-            </div>
-            <p className="mt-3 max-w-[34ch] text-[0.9375rem] text-muted-strong">
-              {service.headline}
-            </p>
-            <p className="mono mt-4 text-[0.5625rem] uppercase tracking-[0.1em] text-muted">
-              {service.engagement}
-            </p>
-          </div>
-
-          <div className={compact ? "grid gap-6 sm:grid-cols-2" : "lg:col-span-5"}>
-            <p className="max-w-[52ch] text-[0.875rem] leading-relaxed text-muted-strong">
-              {service.what}
-            </p>
-
-            <div className="mt-4">
-              <p className="eyebrow">The problem</p>
-              <p className="mt-2 max-w-[52ch] text-[0.875rem] leading-relaxed text-muted">
-                {service.problem}
-              </p>
-            </div>
-
-            <div className="mt-5">
-              <p className="eyebrow">Approach</p>
-              <ul className="mt-2 space-y-2">
-                {service.approach.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-2.5 text-[0.8125rem] leading-relaxed text-muted-strong"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="mt-[0.6em] h-px w-2.5 shrink-0 bg-accent-ink"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className={compact ? "" : "lg:col-span-3"}>
-            <p className="eyebrow">Stack</p>
-            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-              {service.stack.map((item) => (
+          <div className="lg:col-span-4 lg:col-start-5">
+            <p className="eyebrow">Works well when</p>
+            <ul className="mt-4 border-t border-rule">
+              {fitCriteria.good.map((item) => (
                 <li
                   key={item}
-                  className="font-mono text-[0.625rem] uppercase tracking-[0.06em] text-muted"
+                  className="border-b border-rule-soft py-4 text-[0.9375rem] leading-relaxed text-muted-strong"
                 >
                   {item}
                 </li>
               ))}
             </ul>
-            <Link
-              href="/contact"
-              className="link-line mt-6 inline-flex items-center gap-1.5 text-[0.8125rem]"
-            >
-              Discuss {service.name.toLowerCase()}
-              <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
-            </Link>
+          </div>
+
+          <div className="lg:col-span-4 lg:col-start-9">
+            <p className="eyebrow">Not the right fit when</p>
+            <ul className="mt-4 border-t border-rule">
+              {fitCriteria.not.map((item) => (
+                <li
+                  key={item}
+                  className="border-b border-rule-soft py-4 text-[0.9375rem] leading-relaxed text-muted"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </article>
-    </Reveal>
-  );
-}
+      </section>
 
-function FitList({
-  title,
-  items,
-  tone,
-}: {
-  title: string;
-  items: readonly string[];
-  tone: "good" | "not";
-}) {
-  return (
-    <div>
-      <div className="flex items-center gap-2.5 border-b border-rule pb-3">
-        <span
-          aria-hidden="true"
-          className={`size-1.5 rounded-full ${
-            tone === "good" ? "bg-accent-ink" : "bg-rule-strong"
-          }`}
-        />
-        <h3 className="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-muted">
-          {title}
-        </h3>
-      </div>
-      <ul className="mt-4 space-y-3">
-        {items.map((item) => (
-          <li key={item} className="text-[0.875rem] leading-relaxed text-muted-strong">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
+      <section className="border-t border-rule-soft">
+        <div className="shell section-pad">
+          <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+            <h2 className="display max-w-[16ch] text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.94]">
+              Tell us which one,
+              <br />
+              <span className="display-dim">or that we are wrong.</span>
+            </h2>
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <ButtonLink href="/contact">Start a scoping call</ButtonLink>
+              <a href={`mailto:${site.email}`} className="link-line text-[0.875rem] text-muted">
+                Or email directly
+              </a>
+            </div>
+          </div>
+
+          <p className="mt-8 text-[0.8125rem] text-muted-faint">
+            Prefer to see the work first?{" "}
+            <Link href="/work" className="text-muted-strong underline decoration-rule-strong underline-offset-4 hover:text-ink">
+              Read the case studies
+              <ArrowUpRight aria-hidden="true" className="ml-1 inline size-3.5" strokeWidth={1.5} />
+            </Link>
+          </p>
+        </div>
+      </section>
+    </>
   );
 }

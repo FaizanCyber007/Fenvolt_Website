@@ -7,9 +7,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpengraphImage() {
-  const [regular, italic, chip, citation] = await Promise.all([
-    readFile(join(process.cwd(), "src/assets/fonts/InstrumentSerif-Regular.ttf")),
-    readFile(join(process.cwd(), "src/assets/fonts/InstrumentSerif-Italic.ttf")),
+  const [archivo, chip, citation] = await Promise.all([
+    readFile(join(process.cwd(), "src/assets/fonts/Archivo-Medium.woff")),
     readFile(join(process.cwd(), "public/brand/fenvolt-chip.png")),
     readFile(join(process.cwd(), "public/work/specter-citation.jpg")),
   ]);
@@ -26,10 +25,10 @@ export default async function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#06090d",
-          color: "#f3f6f5",
-          padding: "52px 64px 44px",
-          fontFamily: "Instrument",
+          background: "#0a0a0a",
+          color: "#efede7",
+          padding: "44px 56px 40px",
+          fontFamily: "Archivo",
         }}
       >
         <div
@@ -37,51 +36,52 @@ export default async function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderBottom: "1px solid rgba(243,246,245,0.14)",
-            paddingBottom: 22,
+            borderBottom: "1px solid rgba(239,237,231,0.16)",
+            paddingBottom: 18,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={chipSrc} alt="" width={42} height={42} style={{ borderRadius: 8 }} />
-            <span style={{ fontSize: 29, letterSpacing: "-0.02em" }}>Fenvolt</span>
+            <img src={chipSrc} alt="" width={36} height={36} />
+            <span style={{ fontSize: 24, letterSpacing: "-0.03em", fontWeight: 600 }}>
+              Fenvolt
+            </span>
           </div>
           <span
             style={{
-              fontSize: 14,
-              letterSpacing: "0.16em",
+              fontSize: 12,
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(243,246,245,0.55)",
+              color: "rgba(239,237,231,0.58)",
             }}
           >
-            AI engineering · Engineering capacity
+            AI engineering practice · Lahore
           </span>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 46 }}>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 40 }}>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              fontSize: 70,
-              lineHeight: 1,
-              letterSpacing: "-0.02em",
-              width: 610,
+              width: 640,
+              fontSize: 82,
+              lineHeight: 0.94,
+              letterSpacing: "-0.055em",
+              fontWeight: 500,
             }}
           >
-            <span>Engineering capacity</span>
-            <span>
-              <span>for the&#160;</span>
-              <span style={{ fontStyle: "italic", color: "#7de9f7" }}>hard</span>
-              <span>&#160;parts.</span>
-            </span>
+            <span>Engineering</span>
+            <span>capacity for</span>
+            <span style={{ color: "#4a4945" }}>the hard parts.</span>
             <span
               style={{
-                marginTop: 30,
+                marginTop: 28,
                 fontSize: 17,
                 lineHeight: 1.5,
-                letterSpacing: "0",
-                color: "rgba(243,246,245,0.62)",
+                letterSpacing: "-0.01em",
+                fontWeight: 400,
+                color: "rgba(239,237,231,0.66)",
                 width: 470,
               }}
             >
@@ -95,10 +95,9 @@ export default async function OpengraphImage() {
               display: "flex",
               flexDirection: "column",
               width: 388,
-              borderRadius: 14,
-              border: "1px solid rgba(255,255,255,0.14)",
-              background: "rgba(255,255,255,0.04)",
-              padding: 10,
+              border: "1px solid rgba(239,237,231,0.18)",
+              padding: 12,
+              background: "#111110",
             }}
           >
             <div
@@ -106,28 +105,27 @@ export default async function OpengraphImage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "0 4px 9px",
+                padding: "0 2px 10px",
                 fontSize: 11,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "rgba(243,246,245,0.5)",
+                color: "rgba(239,237,231,0.6)",
               }}
             >
-              <span>SPECTER / citation viewer</span>
-              <span style={{ color: "#7de9f7" }}>build</span>
+              <span>SPECTER / source viewer</span>
+              <span style={{ color: "#efede7" }}>Fig. 00</span>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={citationSrc}
               alt=""
-              width={368}
-              height={230}
+              width={362}
+              height={222}
               style={{
-                width: 368,
-                height: 230,
+                width: 362,
+                height: 222,
                 objectFit: "cover",
-                objectPosition: "top",
-                borderRadius: 6,
+                objectPosition: "top left",
               }}
             />
             <div
@@ -135,30 +133,30 @@ export default async function OpengraphImage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "10px 4px 2px",
+                padding: "10px 2px 0",
                 fontSize: 11,
-                letterSpacing: "0.12em",
+                letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "rgba(243,246,245,0.55)",
+                color: "rgba(239,237,231,0.6)",
               }}
             >
               <span>Claim → page 16</span>
-              <span style={{ color: "#7de9f7" }}>1 : 1</span>
+              <span>Verified</span>
             </div>
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ display: "flex", width: 68, height: 3, background: "#22d3ee" }} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+          <div style={{ display: "flex", width: 56, height: 1, background: "rgba(239,237,231,0.5)" }} />
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",
-              fontSize: 14,
-              letterSpacing: "0.12em",
+              fontSize: 12,
+              letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(243,246,245,0.55)",
+              color: "rgba(239,237,231,0.55)",
             }}
           >
             <span>Retrieval · Document intelligence · Agent workflows</span>
@@ -171,16 +169,10 @@ export default async function OpengraphImage() {
       ...size,
       fonts: [
         {
-          name: "Instrument",
-          data: regular,
+          name: "Archivo",
+          data: archivo,
           style: "normal",
-          weight: 400,
-        },
-        {
-          name: "Instrument",
-          data: italic,
-          style: "italic",
-          weight: 400,
+          weight: 500,
         },
       ],
     },

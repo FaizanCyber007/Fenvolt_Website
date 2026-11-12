@@ -1,31 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { CustomCursor } from "@/components/motion/custom-cursor";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { BootSplash } from "@/components/ui/boot-splash";
 import { site } from "@/constants/site";
 import { absoluteUrl } from "@/lib/utils";
 
-const instrument = Instrument_Serif({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-inter-tight",
+  variable: "--font-archivo",
   display: "swap",
 });
 
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   variable: "--font-jetbrains",
   display: "swap",
 });
@@ -81,7 +74,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070a",
+  themeColor: "#0a0a0a",
   colorScheme: "dark",
 };
 
@@ -116,21 +109,13 @@ const organizationSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${instrument.variable} ${interTight.variable} ${jetbrains.variable}`}
-    >
+    <html lang="en" className={`${archivo.variable} ${jetbrains.variable}`}>
       <body id="top">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <div aria-hidden="true" className="site-bg">
-          <span className="aurora aurora-a" />
-          <span className="aurora aurora-b" />
-          <span className="aurora aurora-c" />
-        </div>
+        <BootSplash />
         <SmoothScroll />
-        <CustomCursor />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />

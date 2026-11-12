@@ -14,11 +14,9 @@ import {
 import { site } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
-const inputClass =
-  "h-11 w-full border-b border-rule-strong bg-transparent text-[0.9375rem] text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-accent aria-[invalid=true]:border-[#ff9c7a]";
+const inputClass = "field-input";
 
-const labelClass =
-  "font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-muted";
+const labelClass = "field-label";
 
 export function ContactForm() {
   const [instance, setInstance] = useState(0);
@@ -42,8 +40,8 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
   }
 
   return (
-    <form action={formAction} className="mt-8" noValidate={false}>
-      <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+    <form action={formAction} className="mt-9" noValidate={false}>
+      <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
         <Field name="name" label="Name" error={state.errors?.name}>
           <input
             id="name"
@@ -128,7 +126,7 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
               aria-describedby={
                 state.errors?.message ? "message-error" : "message-hint"
               }
-              className={cn(inputClass, "h-auto resize-y py-2 leading-relaxed")}
+              className={cn(inputClass, "h-auto min-h-[7.5rem] resize-y py-2 leading-relaxed")}
               placeholder="The problem, what already exists, and what a good outcome looks like."
             />
           </Field>
@@ -147,7 +145,7 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
       {state.status === "error" ? (
         <p
           role="alert"
-          className="mt-6 flex items-start gap-2 border-l-2 border-[#ff9c7a] pl-3 text-[0.8125rem] leading-relaxed text-[#ffc2b0]"
+          className="mt-7 flex items-start gap-2 border-l border-[#e8a08c] pl-3 text-[0.8125rem] leading-relaxed text-[#f0c3b6]"
         >
           <AlertCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" strokeWidth={1.5} />
           {state.message}
@@ -155,8 +153,8 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
       ) : null}
 
       {state.status === "ready" ? (
-        <div className="mt-6 border border-rule bg-paper-deep/45 p-5">
-          <p className="font-mono text-[0.5625rem] uppercase tracking-[0.12em] text-muted">
+        <div className="mt-7 border border-rule p-5">
+          <p className="eyebrow">
             One more step
           </p>
           <p className="mt-2 max-w-[54ch] text-[0.8125rem] leading-relaxed text-muted-strong">
@@ -165,32 +163,28 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <a href={state.mailto} className="btn group">
               <span>Open mail app</span>
-              <ArrowUpRight
-                aria-hidden="true"
-                className="btn-arrow size-4"
-                strokeWidth={1.5}
-              />
+              <span className="btn-arrow">
+                <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
+              </span>
             </a>
             <CopyButton text={state.preview ?? ""} />
           </div>
         </div>
       ) : null}
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-5 border-t border-rule pt-6">
         <p className="max-w-[38ch] text-[0.75rem] leading-relaxed text-muted">
           Your message goes to {site.email}. No tracking, no sequence.
         </p>
         <button
           type="submit"
           disabled={pending}
-          className="btn group min-w-[10.5rem] disabled:cursor-wait disabled:opacity-70"
+          className="btn group min-w-[11rem] disabled:cursor-wait disabled:opacity-70"
         >
           <span>{pending ? "Sending…" : "Send enquiry"}</span>
-          <ArrowUpRight
-            aria-hidden="true"
-            className="btn-arrow size-4"
-            strokeWidth={1.5}
-          />
+          <span className="btn-arrow">
+            <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
+          </span>
         </button>
       </div>
     </form>
@@ -213,9 +207,9 @@ function Field({
       <label htmlFor={name} className={labelClass}>
         {label}
       </label>
-      <div className="mt-1.5">{children}</div>
+      <div className="mt-2">{children}</div>
       {error ? (
-        <p id={`${name}-error`} className="mt-1.5 text-[0.75rem] text-[#ffc2b0]">
+        <p id={`${name}-error`} className="mt-1.5 text-[0.75rem] text-[#f0c3b6]">
           {error}
         </p>
       ) : null}
@@ -242,17 +236,14 @@ function Select({
         defaultValue=""
         required
         aria-invalid={invalid}
-        className={cn(inputClass, "appearance-none pr-8")}
+        className={inputClass}
       >
         <option value="" disabled>
           Select one
         </option>
         {children}
       </select>
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute right-1 top-1/2 -mt-1 size-1.5 rotate-45 border-b border-r border-muted"
-      />
+
     </div>
   );
 }
@@ -272,7 +263,7 @@ function CopyButton({ text }: { text: string }) {
           setCopied(false);
         }
       }}
-      className="inline-flex items-center gap-2 border border-rule-strong px-3 py-2 text-[0.75rem] transition-colors hover:border-ink"
+      className="inline-flex items-center gap-2 border border-rule px-4 py-2.5 text-[0.75rem] transition-colors hover:border-ink"
     >
       {copied ? (
         <Check aria-hidden="true" className="size-3.5" strokeWidth={1.6} />
@@ -292,8 +283,8 @@ function SentPanel({
   onReset: () => void;
 }) {
   return (
-    <div role="status" className="mt-8 border border-rule bg-surface p-7 sm:p-9">
-      <span className="flex size-9 items-center justify-center rounded-full border border-accent-ink/40 text-accent-ink">
+    <div role="status" className="mt-8 border border-rule p-7 sm:p-9">
+      <span className="flex size-9 items-center justify-center rounded-full border border-rule-strong text-ink">
         <Check aria-hidden="true" className="size-4" strokeWidth={1.6} />
       </span>
       <h2 className="display mt-5 text-[2rem] leading-none">Message sent.</h2>
