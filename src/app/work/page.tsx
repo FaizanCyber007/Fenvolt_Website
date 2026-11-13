@@ -12,7 +12,7 @@ import { PageFrame } from "@/components/visuals/page-frame";
 export const metadata: Metadata = pageMetadata({
   title: "Work",
   description:
-    "Selected engineering work: SPECTER legal document intelligence, the open-source Document-Parser, and OpsNexus document operations agents.",
+    "Delivered engineering work from Fenvolt: SPECTER legal document intelligence, the open-source Document-Parser, and OpsNexus document operations agents.",
   path: "/work",
 });
 
@@ -20,7 +20,7 @@ export default function WorkPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-rule-soft">
-        <PageFrame arc />
+        <PageFrame />
 
         <div className="shell relative page-top pb-12">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft pb-3">
@@ -39,13 +39,13 @@ export default function WorkPage() {
 
           <div className="mt-10 grid gap-8 border-t border-rule-soft pt-7 lg:grid-cols-12 lg:gap-8">
             <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-muted-strong lg:col-span-5">
-              Three systems, each with the constraints, the architecture and the
-              decisions that made it work. No invented adoption numbers, and no
-              client logos we cannot justify.
+              Three delivered systems, each with the constraints, the architecture
+              and the decisions that made it work. All three were scoped, built and
+              shipped by Fenvolt.
             </p>
             <p className="max-w-[34ch] text-[0.875rem] leading-relaxed text-muted lg:col-span-3 lg:col-start-7">
-              Every case study states its status and its limits. Where a claim
-              needs measurement, the method is on the page.
+              Every case study shows what was built, how it runs and the method
+              behind each number.
             </p>
             <div className="lg:col-span-3 lg:col-start-10 lg:justify-self-end">
               <ButtonLink href="/contact">Discuss a build</ButtonLink>
@@ -74,8 +74,8 @@ export default function WorkPage() {
                   <div className="media relative aspect-[16/10] w-full overflow-hidden border border-rule-soft">
                     {project.visual === "specter" ? (
                       <Image
-                        src="/work/specter-citation.jpg"
-                        alt="SPECTER source viewer with the cited passage highlighted on the page."
+                        src="/work/specter-answer.jpg"
+                        alt="SPECTER answering a legal question with a structured, cited answer and a checked list of authorities."
                         fill
                         priority={i === 0}
                         sizes="(min-width: 1024px) 58vw, 100vw"
@@ -99,7 +99,7 @@ export default function WorkPage() {
                       {String(i + 1).padStart(2, "0")} — {project.category}
                     </p>
                     <span className="mono shrink-0 text-[0.625rem] text-muted-faint">
-                      {project.year}
+                      Completed · {project.year}
                     </span>
                   </div>
 
@@ -140,7 +140,10 @@ export default function WorkPage() {
         })}
       </section>
 
-      <section aria-labelledby="archive" className="bg-paper-deep/60">
+      <section
+        aria-labelledby="archive"
+        className="theme-bone paper-grain relative border-t border-rule-soft"
+      >
         <div className="shell section-pad">
           <div className="flex flex-wrap items-end justify-between gap-5 border-b border-rule pb-6">
             <div>
@@ -153,8 +156,8 @@ export default function WorkPage() {
               </h2>
             </div>
             <p className="max-w-[38ch] text-[0.875rem] leading-relaxed text-muted">
-              Smaller projects and experiments that are still useful evidence of
-              how the work gets done. No links where no public repository exists.
+              Earlier Fenvolt builds, kept as evidence of range: OCR, retrieval,
+              detection and data modelling. Source is linked wherever it can be published.
             </p>
           </div>
 

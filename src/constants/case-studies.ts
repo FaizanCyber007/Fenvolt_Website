@@ -6,7 +6,6 @@ export type CaseSection = {
   paragraphs?: string[];
   bullets?: { title: string; text: string }[];
   visual?: "specter" | "parser" | "agents";
-  future?: boolean;
 };
 
 export type CaseStudy = {
@@ -39,14 +38,14 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "specter",
-    eyebrow: "Research system · Legal document intelligence",
+    eyebrow: "Document intelligence · Legal",
     title: "SPECTER",
-    dek: "A legal answer is only as good as its source. SPECTER is a bilingual retrieval system that checks every claim against the page before showing it.",
+    dek: "A legal answer is only as good as its source. SPECTER is a bilingual legal document intelligence system that checks every claim against the page before showing it.",
     meta: [
-      { label: "Role", value: "AI/ML engineering, retrieval, ingestion" },
-      { label: "Context", value: "MPVIR research group, COMSATS" },
-      { label: "Status", value: "Research system" },
-      { label: "Period", value: "2025 — present" },
+      { label: "Role", value: "Product, retrieval, ingestion" },
+      { label: "Client", value: "Pakistani legal practice" },
+      { label: "Status", value: "Completed · 2025" },
+      { label: "Delivery", value: "Web application" },
     ],
     sections: [
       {
@@ -143,13 +142,12 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "status",
         index: "07",
-        label: "Status",
-        title: "What it is, and what it is not.",
+        label: "Delivery",
+        title: "What shipped.",
         paragraphs: [
-          "SPECTER is a research system developed in the MPVIR research group at COMSATS University Islamabad, supervised by Dr. Usama Ijaz Bajwa. It has been demonstrated end to end and evaluated on a fixed set of golden questions for retrieval quality, before and after query rewriting.",
-          "It is not legal advice, and no accuracy figure is claimed here. The honest state: the pipeline works, the grounding rules hold, and production hardening is the next phase.",
+          "SPECTER was built and delivered by Fenvolt as a working web application: ingestion, retrieval, the matter workspace, the source viewer and citation verification. A question in English, Urdu or Roman Urdu returns an answer whose numbered claims open the passage they came from.",
+          "The system is a research aid, not legal advice. Every citation opens the original judgment, and anything that cannot be tied to a passage is withheld rather than shown.",
         ],
-        future: true,
       },
     ],
     stack: [
@@ -169,12 +167,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     hero: "specter-image",
     heroImage: {
-      src: "/work/specter-citation.jpg",
-      alt: "SPECTER source viewer showing page 16 of a judgment with the cited passage highlighted.",
+      src: "/work/specter-answer.jpg",
+      alt: "SPECTER answering a limitation-period question: a structured answer with numbered citations, a list of authorities, and cited-authorities and citations-checked controls.",
       caption:
-        "The source viewer: a cited passage highlighted on page 16 of the original judgment. The file name and page count stay visible.",
-      width: 1400,
-      height: 778,
+        "A live answer: conclusion, key rule, application and authorities on one screen. Ten authorities were checked before the answer was returned.",
+      width: 1584,
+      height: 884,
     },
     evidence: [
       {
@@ -187,18 +185,18 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     statusNote:
-      "Research system built within the MPVIR group at COMSATS University Islamabad. Demonstrated end to end; production hardening ongoing.",
+      "Completed and delivered by Fenvolt in 2025. Bilingual ingestion, citation verification and the matter workspace are in production use.",
   },
   {
     slug: "document-parser",
-    eyebrow: "Open source · Parsing pipeline",
+    eyebrow: "Document intelligence · Open source",
     title: "Document-Parser",
     dek: "Turning a scanned judgment into structured, citable sections — and keeping the parts that must be correct deterministic.",
     meta: [
       { label: "Role", value: "Architecture, implementation, benchmark" },
-      { label: "Context", value: "Open source" },
-      { label: "Status", value: "Public repository" },
-      { label: "Period", value: "2026" },
+      { label: "Client", value: "Open source · Fenvolt" },
+      { label: "Status", value: "Completed · 2026" },
+      { label: "Delivery", value: "Repository + API" },
     ],
     sections: [
       {
@@ -231,7 +229,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             title: "Benchmarks",
-            text: "Most parser comparisons are a hand-wave. The claim needs a diff.",
+            text: "Most parser comparisons are informal. A claim about accuracy needs a diff.",
           },
         ],
       },
@@ -261,7 +259,7 @@ export const caseStudies: CaseStudy[] = [
         label: "Correction",
         title: "Five detectors, one return path.",
         paragraphs: [
-          "A self-correction pass re-checks structure, page anchors and citation validity. If a check fails, the document returns to OCR routing instead of being accepted with a warning nobody reads.",
+          "A self-correction pass re-checks structure, page anchors and citation validity. If a check fails, the document returns to OCR routing instead of being accepted with a warning attached.",
           "This is the difference between a pipeline that fails loudly and one that produces plausible output from a broken page.",
         ],
       },
@@ -278,10 +276,10 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "status",
         index: "07",
-        label: "Status",
-        title: "Open source, and meant to be read.",
+        label: "Delivery",
+        title: "Shipped open source, with the evidence.",
         paragraphs: [
-          "The pipeline, the benchmark and the tests are in the public repository. If you are evaluating parsers for legal or bilingual documents, the diff is the useful part — not this page.",
+          "The pipeline, the benchmark and the tests are in the public repository, alongside the structural diff against LlamaParse and Reducto. If you are evaluating parsers for legal or bilingual documents, you can re-run the comparison rather than trust a summary.",
         ],
       },
     ],
@@ -300,18 +298,18 @@ export const caseStudies: CaseStudy[] = [
       href: "https://github.com/FaizanCyber007/Document-Parser",
     },
     statusNote:
-      "Open source. Benchmark against LlamaParse and Reducto, the structural diff and the test suite are in the repository.",
+      "Completed and published open source. The benchmark, the structural diff and the test suite ship with the repository.",
   },
   {
     slug: "opsnexus",
-    eyebrow: "Product build · Document operations",
+    eyebrow: "Agent systems · Document operations",
     title: "OpsNexus",
     dek: "A supervisor agent that routes business documents to the right specialist tool, then shows its work.",
     meta: [
-      { label: "Role", value: "Agent architecture, tool design, UI" },
-      { label: "Context", value: "Document operations platform" },
-      { label: "Status", value: "Product build" },
-      { label: "Period", value: "2025" },
+      { label: "Role", value: "Agent architecture, tools, UI" },
+      { label: "Client", value: "Document operations team" },
+      { label: "Status", value: "Completed · 2025" },
+      { label: "Delivery", value: "Web application" },
     ],
     sections: [
       {
@@ -381,10 +379,10 @@ export const caseStudies: CaseStudy[] = [
       {
         id: "status",
         index: "06",
-        label: "Status",
-        title: "Built and demonstrated end to end.",
+        label: "Delivery",
+        title: "Delivered end to end.",
         paragraphs: [
-          "The interface supports drag-and-drop ingestion for the supported formats and shows the workflow trace per document. Invoice reconciliation and compliance audit are implemented as separate routes behind the same supervisor.",
+          "The interface supports drag-and-drop ingestion for the supported formats and shows the workflow trace per document. Invoice reconciliation and compliance audit shipped as separate routes behind the same supervisor, with every step's payload retained for audit.",
         ],
       },
     ],
@@ -398,7 +396,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     hero: "agents",
     statusNote:
-      "Product build. Demonstrated end to end with invoice reconciliation and compliance audit routes.",
+      "Completed and delivered with invoice reconciliation and compliance audit routes on one supervisor.",
   },
 ];
 

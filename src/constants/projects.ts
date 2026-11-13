@@ -1,4 +1,4 @@
-export type ProjectStatus = "Research system" | "Open source" | "Product build";
+export type ProjectStatus = "Completed" | "Completed · open source";
 
 export type ProjectMetric = {
   label: string;
@@ -27,13 +27,13 @@ export const projects: Project[] = [
     slug: "specter",
     title: "SPECTER — Legal document intelligence",
     shortTitle: "SPECTER",
-    category: "Retrieval · Document intelligence",
-    year: "2025 —",
-    status: "Research system",
+    category: "Document intelligence · Legal",
+    year: "2025",
+    status: "Completed",
     summary:
-      "A bilingual retrieval system over Pakistani case law, built so that every answer can be traced to the page it came from.",
+      "A bilingual legal document intelligence system, delivered for a Pakistani practice: every answer traced to the page it came from.",
     cardLine:
-      "Answers over scanned Urdu and English legal records, with the citation checked against the source page before it is shown.",
+      "Answers over scanned Urdu and English court records, with every citation verified against the source page before it is shown.",
     stack: ["FastAPI", "FAISS", "pgvector", "Qwen3-VL", "Claude", "Clerk"],
     visual: "specter",
     role: "AI/ML engineering, retrieval architecture, ingestion pipeline",
@@ -49,9 +49,9 @@ export const projects: Project[] = [
     slug: "document-parser",
     title: "Document-Parser — Bilingual legal parsing",
     shortTitle: "Document-Parser",
-    category: "Open source · Parsing pipeline",
+    category: "Open source · Parsing",
     year: "2026",
-    status: "Open source",
+    status: "Completed · open source",
     summary:
       "A seven-phase pipeline that turns a scanned judgment into structured, citable sections — built to survive real court documents, not clean PDFs.",
     cardLine:
@@ -76,9 +76,9 @@ export const projects: Project[] = [
     slug: "opsnexus",
     title: "OpsNexus — Document operations agents",
     shortTitle: "OpsNexus",
-    category: "Agents · Workflow automation",
+    category: "Agent systems · Operations",
     year: "2025",
-    status: "Product build",
+    status: "Completed",
     summary:
       "A supervisor agent that classifies incoming business documents, routes each to the right specialist tool, and returns a structured result with its reasoning trace.",
     cardLine:

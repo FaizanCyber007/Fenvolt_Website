@@ -94,7 +94,15 @@ const organizationSchema = {
   address: {
     "@type": "PostalAddress",
     addressLocality: "Lahore",
+    addressRegion: "Punjab",
     addressCountry: "PK",
+  },
+  areaServed: ["Pakistan", "United Arab Emirates", "United Kingdom", "United States"],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "10:00",
+    closes: "19:00",
   },
   knowsAbout: [
     "Retrieval-augmented generation",
@@ -103,7 +111,7 @@ const organizationSchema = {
     "OCR",
     "Staff augmentation",
   ],
-  sameAs: site.socials.map((social) => social.href),
+  sameAs: [site.companyLinkedIn],
   image: absoluteUrl("/opengraph-image"),
 };
 

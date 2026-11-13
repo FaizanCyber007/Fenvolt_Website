@@ -8,6 +8,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { Reveal } from "@/components/motion/reveal";
 import { PageFrame } from "@/components/visuals/page-frame";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ArchivePlate } from "@/components/visuals/archive-plate";
 
 export const metadata: Metadata = pageMetadata({
   title: "Company",
@@ -36,17 +37,27 @@ const workingNotes = [
 ];
 
 const background = [
-  "AI/ML engineer, currently building production agentic systems at Arbisoft.",
-  "Applied research on SPECTER in the MPVIR group at COMSATS University Islamabad.",
-  "Author of Document-Parser, an open-source bilingual legal parsing pipeline.",
-  "Machine learning engineering at Flyrank.ai, and freelance full-stack delivery since 2022.",
+  "Founder and principal engineer at Fenvolt: retrieval, document intelligence and agent systems.",
+  "Built SPECTER, a bilingual legal document intelligence system over 11,341 judgments and statutes with citation-level grounding.",
+  "Author of Document-Parser, an open-source bilingual legal parsing pipeline benchmarked against LlamaParse and Reducto.",
+  "BS Computer Science, COMSATS University Islamabad, 2023–2027.",
+  "Certified in applied AI and data engineering — DeepLearning.AI, IBM, Cisco.",
+];
+
+const studio = [
+  { label: "Office", value: site.location },
+  { label: "Hours", value: site.hours },
+  { label: "Time zone", value: `${site.timezone} · same day as the Gulf` },
+  { label: "Coordinates", value: site.coordinates },
+  { label: "Visits", value: "By appointment — address on confirmation" },
+  { label: "Engagements", value: "Embedded, squad, fixed scope, retainer" },
 ];
 
 export default function CompanyPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-rule-soft">
-        <PageFrame arc />
+        <PageFrame />
 
         <div className="shell relative page-top pb-12">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft pb-3">
@@ -57,15 +68,16 @@ export default function CompanyPage() {
           </div>
 
           <h1 className="display mt-8 max-w-[22ch] text-[clamp(2.9rem,7vw,6.6rem)] leading-[0.9] tracking-[-0.055em]">
-            An engineering practice,
+            An engineering company,
             <br />
-            <span className="display-dim">not a talent marketplace.</span>
+            <span className="display-dim">based in Lahore.</span>
           </h1>
 
           <div className="mt-10 grid gap-8 border-t border-rule-soft pt-7 lg:grid-cols-12 lg:gap-8">
             <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-muted-strong lg:col-span-5">
-              Two things, done properly: adding senior capacity to a team, and
-              building the AI systems that team cannot staff yet.
+              Two things, done properly: putting senior engineers inside a product
+              team, and building the AI systems that team cannot staff yet. Same
+              office, same engineers, same standard.
             </p>
 
             <dl className="grid grid-cols-2 gap-x-6 gap-y-5 lg:col-span-4 lg:col-start-7">
@@ -79,7 +91,7 @@ export default function CompanyPage() {
                 <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
                   Based
                 </dt>
-                <dd className="mt-1.5 text-[0.875rem]">Lahore, Pakistan</dd>
+                <dd className="mt-1.5 text-[0.875rem]">Lahore · PKT (UTC+5)</dd>
               </div>
               <div>
                 <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
@@ -154,7 +166,7 @@ export default function CompanyPage() {
       <section
         id="principles"
         aria-labelledby="principles-title"
-        className="scroll-mt-24 border-t border-rule-soft bg-paper-deep/60"
+        className="theme-bone paper-grain relative scroll-mt-24 border-t border-rule-soft"
       >
         <div className="shell section-pad">
           <SectionHeading
@@ -191,18 +203,39 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <section aria-labelledby="founder" className="border-t border-rule-soft">
+      <section
+        aria-labelledby="founder"
+        className="theme-bone paper-grain relative border-t border-rule-soft"
+      >
         <div className="shell section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-3">
             <p className="index-label">03 — Who you work with</p>
+            <ArchivePlate
+              className="mt-7"
+              src="/brand/founder.jpg"
+              width={1200}
+              height={1500}
+              alt="Portrait of Faizan Javed, founder of Fenvolt."
+              label={site.founder}
+              caption="Founder · AI/ML engineer"
+              credit="Lahore, Pakistan"
+              sizes="(min-width: 1024px) 22vw, 100vw"
+            />
+          </div>
+
+          <div className="lg:col-span-4 lg:col-start-5">
+            <p className="eyebrow">Founder · Principal engineer</p>
             <h2
               id="founder"
-              className="display mt-7 max-w-[15ch] text-[clamp(2.4rem,4.6vw,4rem)] leading-[0.98]"
+              className="display mt-4 max-w-[15ch] text-[clamp(2.4rem,4.2vw,3.6rem)] leading-[0.98]"
             >
               {site.founder}
             </h2>
-            <p className="mt-3 text-[0.75rem] uppercase tracking-[0.12em] text-muted">
-              Founder · AI/ML engineer
+            <p className="mt-5 max-w-[38ch] text-[0.9375rem] leading-relaxed text-muted">
+              Fenvolt is led by {site.founder}, who writes the retrieval
+              pipelines and the services around them. The person who scopes the
+              work is the person who ships it — and the one who answers the
+              phone when a build is live.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -218,35 +251,101 @@ export default function CompanyPage() {
                   <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
                 </a>
               ))}
+              <a
+                href={`mailto:${site.founderEmail}`}
+                className="link-line text-[0.875rem] text-muted-strong"
+              >
+                {site.founderEmail}
+              </a>
+              <a
+                href={`tel:${site.telephone.replace(/[^+\d]/g, "")}`}
+                className="text-[0.875rem] text-muted"
+              >
+                {site.telephone}
+              </a>
+            </div>
+
+            <ul className="tag-row mt-7 border-t border-rule-soft pt-4">
+              {["English", "Urdu", "Punjabi"].map((language) => (
+                <li key={language}>{language}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-4 lg:col-start-9">
+            <p className="eyebrow">Background</p>
+            <ul className="mt-4 border-t border-rule">
+              {background.map((item) => (
+                <li
+                  key={item}
+                  className="border-b border-rule-soft py-3 text-[0.875rem] leading-relaxed text-muted-strong"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="studio"
+        className="relative scroll-mt-24 border-t border-rule-soft"
+      >
+        <div className="shell section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <p className="index-label">04 — The office</p>
+            <h2
+              id="studio"
+              className="display mt-7 max-w-[15ch] text-[clamp(2rem,3.4vw,2.9rem)] leading-[1.02]"
+            >
+              A real office,
+              <br />
+              <span className="display-dim">open to clients.</span>
+            </h2>
+            <p className="mt-5 max-w-[34ch] text-[0.9375rem] leading-relaxed text-muted">
+              Fenvolt works from a studio in Lahore, in the same time zone as
+              Karachi, Dubai and Riyadh. Clients visit; the team is here.
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a href={`mailto:${site.email}`} className="link-line text-[0.875rem] text-muted-strong">
-                Email
+                {site.email}
+              </a>
+              <a
+                href={`tel:${site.telephone.replace(/[^+\d]/g, "")}`}
+                className="text-[0.875rem] text-muted"
+              >
+                {site.telephone}
               </a>
             </div>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
-            <div className="prose-fv">
-              <p>
-                Fenvolt is led by {site.founder}, who writes the retrieval
-                pipelines and the services around them. The company is built
-                around that: the person who scopes the work is the person who
-                ships it.
-              </p>
-            </div>
-
-            <div className="mt-8 border-t border-rule-soft pt-5">
-              <p className="eyebrow">Background</p>
-              <ul className="mt-4">
-                {background.map((item) => (
-                  <li
-                    key={item}
-                    className="border-b border-rule-soft py-3 text-[0.875rem] leading-relaxed text-muted-strong"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="lg:col-span-7 lg:col-start-6">
+            <dl className="grid border-t border-rule sm:grid-cols-2">
+              {studio.map((item) => (
+                <div
+                  key={item.label}
+                  className="border-b border-rule-soft py-4 sm:pr-6 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(even)]:pl-6"
+                >
+                  <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+              <div className="border-b border-rule-soft py-4 sm:col-span-2 sm:pr-6">
+                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                  Working with
+                </dt>
+                <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink">
+                  Teams in Pakistan, the Gulf, the UK and North America — async
+                  by default, with a standing call in your working hours.
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
@@ -254,7 +353,7 @@ export default function CompanyPage() {
       <section aria-labelledby="limits" className="border-t border-rule-soft">
         <div className="shell section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <p className="index-label">04 — Limits</p>
+            <p className="index-label">05 — Limits</p>
             <h2
               id="limits"
               className="display mt-7 max-w-[16ch] text-[clamp(2rem,3.4vw,2.9rem)] leading-[1.02]"
@@ -262,7 +361,8 @@ export default function CompanyPage() {
               What we do not do.
             </h2>
             <p className="mt-5 max-w-[34ch] text-[0.875rem] leading-relaxed text-muted">
-              A clear no is part of the offer. It saves both sides a quarter.
+              We would rather decline than sell a quarter we cannot deliver. The
+              boundary is stated up front, in writing.
             </p>
 
             <div className="mt-7 flex flex-col items-start gap-4">
@@ -297,7 +397,7 @@ export default function CompanyPage() {
         <div className="shell section-pad">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <p className="eyebrow">05 — Next</p>
+              <p className="eyebrow">06 — Next</p>
               <h2 className="display mt-6 max-w-[16ch] text-[clamp(2.6rem,5.6vw,5rem)] leading-[0.94]">
                 A short call is
                 <br />

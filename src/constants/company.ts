@@ -139,8 +139,8 @@ export const approach = [
 ];
 
 export const notInScope = [
-  "Staffing at volume — we are not a body shop.",
+  "Staffing at volume with no technical owner on our side.",
   "AI strategy decks without a system behind them.",
   "Training a foundation model when retrieval solves the problem.",
-  "Publishing accuracy numbers we have not measured.",
+  "Numbers we cannot reproduce from the running system.",
 ];

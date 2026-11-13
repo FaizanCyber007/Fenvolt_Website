@@ -145,7 +145,7 @@ function ContactFormInstance({ onReset }: { onReset: () => void }) {
       {state.status === "error" ? (
         <p
           role="alert"
-          className="mt-7 flex items-start gap-2 border-l border-[#e8a08c] pl-3 text-[0.8125rem] leading-relaxed text-[#f0c3b6]"
+          className="mt-7 flex items-start gap-2 border-l error-border pl-3 text-[0.8125rem] leading-relaxed error-text"
         >
           <AlertCircle aria-hidden="true" className="mt-0.5 size-4 shrink-0" strokeWidth={1.5} />
           {state.message}
@@ -209,7 +209,7 @@ function Field({
       </label>
       <div className="mt-2">{children}</div>
       {error ? (
-        <p id={`${name}-error`} className="mt-1.5 text-[0.75rem] text-[#f0c3b6]">
+        <p id={`${name}-error`} className="mt-1.5 text-[0.75rem] error-text">
           {error}
         </p>
       ) : null}

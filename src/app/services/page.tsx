@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { pageMetadata } from "@/lib/metadata";
@@ -23,7 +24,13 @@ export const metadata: Metadata = pageMetadata({
 
 const allServices = [...capacityServices, ...aiServices];
 
-function ServiceChapter({ service }: { service: Service }) {
+function ServiceChapter({
+  service,
+  plate = false,
+}: {
+  service: Service;
+  plate?: boolean;
+}) {
   return (
     <article id={service.id} className="scroll-mt-28 border-t border-rule pt-6">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -74,6 +81,34 @@ function ServiceChapter({ service }: { service: Service }) {
           </ul>
         </div>
       </div>
+
+      {plate ? (
+        <figure className="mt-9 grid gap-6 border-t border-rule-soft pt-7 lg:grid-cols-12 lg:gap-8">
+          <div className="media relative aspect-[4/3] w-full overflow-hidden border border-rule lg:col-span-5">
+            <Image
+              src="/archive/firman-seal.jpg"
+              alt="Detail of a 1550 decree: a round seal, an illuminated gold heading and the opening lines of text on aged paper."
+              fill
+              sizes="(min-width: 1024px) 38vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <figcaption className="text-[0.8125rem] leading-relaxed text-muted lg:col-span-6 lg:col-start-7 lg:pt-1">
+            <span className="mono uppercase tracking-[0.1em] text-muted-strong">
+              Plate 02 — Illuminated firman
+            </span>
+            <span className="mt-2 block max-w-[46ch]">
+              A decree opens with a seal and an illuminated heading, not a title
+              field. The structure is implied by the page, and reading it is the
+              first task of the build rather than a preprocessing step.
+            </span>
+            <span className="mt-2 block text-muted-faint">
+              Ink, opaque watercolour and gold on paper, 957 AH / 1550 CE. The
+              Metropolitan Museum of Art, open access.
+            </span>
+          </figcaption>
+        </figure>
+      ) : null}
     </article>
   );
 }
@@ -82,7 +117,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-rule-soft">
-        <PageFrame arc />
+        <PageFrame />
 
         <div className="shell relative page-top">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft pb-3">
@@ -172,14 +207,18 @@ export default function ServicesPage() {
 
             <div className="mt-10 space-y-14">
               {aiServices.map((service) => (
-                <ServiceChapter key={service.id} service={service} />
+                <ServiceChapter
+                  key={service.id}
+                  service={service}
+                  plate={service.id === "documents"}
+                />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-rule-soft bg-paper-deep/60">
+      <section className="theme-bone paper-grain relative border-t border-rule-soft">
         <div className="shell section-pad">
           <SectionHeading
             index="10"

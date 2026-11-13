@@ -2,17 +2,19 @@
 
 ## Before launch — needs confirmation
 
-- [ ] **Domain.** `NEXT_PUBLIC_SITE_URL` defaults to `https://fenvolt.com`. Confirm the real origin; it feeds canonical tags, the sitemap and OG URLs.
-- [ ] **Published contact address.** The site uses `faizanjaved246@gmail.com` from the supplied CV. Replace with a company address if one exists.
+- [x] **Domain.** `fenvolt.com` is registered; `NEXT_PUBLIC_SITE_URL` defaults to `https://fenvolt.com` and feeds canonical tags, the sitemap and OG URLs.
+- [ ] **Mailboxes.** The site publishes `hello@fenvolt.com` (new business) and `faizan@fenvolt.com` (founder, used on `/company`). Both need creating at the mail host, with SPF, DKIM and a DMARC record on the domain.
+- [ ] **LinkedIn.** `site.socials` points at `linkedin.com/in/faizan-javed-b0267426a`; `site.companyLinkedIn` at `linkedin.com/company/fenvolt`. Confirm the company page has been published.
 - [ ] **Company legal name and location.** The footer says "Lahore, Pakistan" and "Fenvolt". Confirm both.
-- [ ] **Contact delivery.** Set `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`. Until then the form validates, composes the message and offers a prefilled mailto rather than faking a send.
+- [ ] **Contact delivery.** The action is wired to Resend and defaults to `hello@fenvolt.com`. Add `RESEND_API_KEY`, set `CONTACT_FROM_EMAIL` to an address on the verified domain, and verify `fenvolt.com` in Resend (SPF + DKIM). Until the key exists the form composes the message and offers a prefilled mailto rather than faking a send.
+- [ ] **Office address.** `/company` currently states "visits by appointment — address shared on confirmation". Replace with a street address if one should be public.
 - [ ] **Booking link.** "Book a scoping call" points to `/contact`. If a Cal.com/Calendly account exists, swap the CTA target.
 
 ## Content that would strengthen the site
 
 - [ ] A third-party reference or client quote (none are published, because none were supplied).
 - [ ] Public accuracy or latency measurements for SPECTER, with the evaluation set documented.
-- [ ] Links to live demos or videos for SPECTER and OpsNexus. The supplied MP4s are not published; only two stills are used.
+- [ ] A short screen recording of SPECTER and OpsNexus cut for the web. The supplied reels pan and zoom across the UI, so this site uses stills from them rather than embedding the raw footage.
 - [ ] A team page, if there is a team to name.
 - [ ] A short note on the SPECTER evaluation method, if the numbers are ever published.
 

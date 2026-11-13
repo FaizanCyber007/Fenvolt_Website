@@ -23,6 +23,9 @@
   --accent: #efede7;
   --accent-ink: #efede7;
   --warm: rgba(239, 237, 231, 0.32);
+  --display-dim: #74736b;
+  --chapter-num: #62615b;
+  --error: #f0c3b6;
   --page-max: 1680px;
   --gutter: clamp(1.25rem, 3.4vw, 3.5rem);
   --radius: 2px;
@@ -68,6 +71,19 @@ html {
   scroll-behavior: auto;
   color-scheme: dark;
   background: var(--paper);
+}
+
+/* A fixed film of grain over the whole page: it keeps the large black fields
+   from reading as flat screen-black, without adding colour or pattern. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 body {
@@ -165,7 +181,7 @@ svg {
 
 /* Utility-style secondary headline line: the same type, dropped in value */
 .display-dim {
-  color: #67665f;
+  color: var(--display-dim);
 }
 
 .eyebrow {
@@ -282,7 +298,7 @@ svg {
 /* the reference's pill button, in monochrome */
 .btn {
   --btn-bg: var(--ink);
-  --btn-fg: #0a0a0a;
+  --btn-fg: var(--paper);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -291,7 +307,7 @@ svg {
   min-height: 3.25rem;
   padding: 0.95rem 0.95rem 0.95rem 1.5rem;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 2px;
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-size: 0.9375rem;
@@ -310,7 +326,7 @@ svg {
   width: 2rem;
   height: 2rem;
   flex: none;
-  border-radius: 999px;
+  border-radius: 1px;
   background: rgba(0, 0, 0, 0.1);
   transition:
     transform 0.45s var(--ease),
@@ -499,8 +515,73 @@ svg {
   font-weight: 400;
   line-height: 0.8;
   letter-spacing: -0.05em;
-  color: #62615b;
+  color: var(--chapter-num);
   font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------
+   Paper band
+   Half the site is printed on bone stock: same grid, inverted stock,
+   dark ink. Everything inside reads from the tokens, so utilities and
+   component classes invert without per-section overrides.
+------------------------------------------------------------------ */
+.theme-bone {
+  --paper: #e7e3d9;
+  --paper-deep: #ddd8ca;
+  --surface: #efece3;
+  --surface-raised: #f5f2e9;
+  --plate: #d9d4c6;
+  --ink: #14130f;
+  --ink-raised: #000000;
+  --muted: #55544c;
+  --muted-strong: #37362f;
+  --muted-faint: #5f5e56;
+  --rule: rgba(20, 19, 15, 0.24);
+  --rule-soft: rgba(20, 19, 15, 0.14);
+  --rule-strong: rgba(20, 19, 15, 0.44);
+  --accent: #14130f;
+  --accent-ink: #14130f;
+  --warm: rgba(20, 19, 15, 0.3);
+  --display-dim: #7c7a6f;
+  --chapter-num: #bab6a7;
+  --error: #9a3324;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.theme-bone ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* buttons carry the ink fill when the stock is light */
+.theme-bone .btn {
+  --btn-bg: #14130f;
+  --btn-fg: #efece2;
+}
+
+.theme-bone .btn:hover {
+  --btn-bg: #33312a;
+}
+
+.theme-bone .btn .btn-arrow,
+.theme-bone .btn:hover .btn-arrow {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.theme-bone .btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.theme-bone .btn-ghost .btn-arrow {
+  background: rgba(20, 19, 15, 0.07);
+}
+
+.theme-bone .btn-ghost:hover {
+  --btn-bg: rgba(20, 19, 15, 0.06);
+  border-color: var(--ink);
 }
 
 /* ------------------------------------------------------------------
@@ -524,6 +605,40 @@ svg {
 .group:hover .media img,
 .media:hover img {
   transform: scale(1.025);
+}
+
+/* A soft monochrome wash behind the opening screen, so the headline sits on
+   something with depth instead of a flat hex value. */
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(90rem 46rem at 76% -14%, rgba(239, 237, 231, 0.07), transparent 62%),
+    radial-gradient(54rem 30rem at 4% 6%, rgba(239, 237, 231, 0.035), transparent 70%);
+}
+
+/* Faint column field for dark bands that need structure rather than another
+   flat rectangle. */
+.rule-field {
+  background-image: linear-gradient(
+    to right,
+    rgba(239, 237, 231, 0.045) 1px,
+    transparent 1px
+  );
+  background-size: 25% 100%;
+  background-position: 0 0;
+}
+
+/* printed-paper texture for inverted bands */
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: multiply;
 }
 
 .media-grain::after {
@@ -828,7 +943,15 @@ body[data-menu-open="true"] {
 }
 
 .field-input[aria-invalid="true"] {
-  border-bottom-color: #e8a08c;
+  border-bottom-color: var(--error);
+}
+
+.error-text {
+  color: var(--error);
+}
+
+.error-border {
+  border-color: var(--error);
 }
 
 select.field-input {

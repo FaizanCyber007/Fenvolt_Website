@@ -10,6 +10,8 @@ import { approach, capabilities, principles } from "@/constants/company";
 import { projects } from "@/constants/projects";
 import { site } from "@/constants/site";
 import { ProjectPlate } from "@/components/visuals/project-plate";
+import { ArchivePlate } from "@/components/visuals/archive-plate";
+import { MotionPlate } from "@/components/visuals/motion-plate";
 
 const figures = [
   {
@@ -41,17 +43,23 @@ export default function HomePage() {
     <>
       <HomeHero />
 
-      {/* 01 — statement */}
-      <section id="statement" className="scroll-mt-24 border-t border-rule-soft">
+      {/* 01 — statement, printed on bone stock */}
+      <section
+        id="statement"
+        className="theme-bone paper-grain relative scroll-mt-24 border-t border-rule-soft"
+      >
         <div className="shell section-pad">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-2">
-              <p className="eyebrow">01 — Position</p>
-            </div>
+          <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-4">
+            <p className="index-label">01 — Position</p>
+            <p className="mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
+              The problem, not the model
+            </p>
+          </div>
 
-            <div className="lg:col-span-9 lg:col-start-4">
+          <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-7">
               <Reveal>
-                <p className="display max-w-[26ch] text-[clamp(1.85rem,3.6vw,3.4rem)] leading-[1.08] tracking-[-0.035em]">
+                <p className="display max-w-[24ch] text-[clamp(1.85rem,3.8vw,3.5rem)] leading-[1.06] tracking-[-0.035em]">
                   Most AI products fail in the parts that are not the model: the
                   ingestion, the schema, the review screen, the citation.
                 </p>
@@ -69,6 +77,29 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+
+            <figure className="lg:col-span-4 lg:col-start-9">
+              <div className="media relative aspect-[4/3] w-full overflow-hidden border border-rule">
+                <MotionPlate
+                  src="/media/tughra-loop.webm"
+                  poster="/media/tughra-poster.jpg"
+                  alt="Detail of an imperial tughra: interlaced calligraphy over illuminated paper."
+                />
+              </div>
+              <figcaption className="mt-3 border-t border-rule-soft pt-3 text-[0.6875rem] leading-relaxed text-muted">
+                <span className="mono uppercase tracking-[0.1em] text-muted-strong">
+                  Plate 01 — Tughra of Sultan Süleiman
+                </span>
+                <span className="mt-1.5 block max-w-[42ch]">
+                  A decree carries its authority in three places: the seal, the
+                  hand, the margin. Extraction fails in the same three places.
+                </span>
+                <span className="mt-1.5 block text-muted-faint">
+                  Ink, opaque watercolour and gold on paper, ca. 1555–60. The
+                  Metropolitan Museum of Art, open access.
+                </span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -81,12 +112,12 @@ export default function HomePage() {
             label="Selected work"
             title={
               <>
-                Systems in use,
+                Delivered systems,
                 <br />
                 <span className="display-dim">not concepts.</span>
               </>
             }
-            note="Three builds. Each one is documented, and each limitation is stated on its own page."
+            note="Three delivered builds. Each one has its own page, with the architecture and the result."
             action={
               <Link href="/work" className="arrow-link text-[0.875rem] text-muted-strong hover:text-ink">
                 All work
@@ -100,8 +131,8 @@ export default function HomePage() {
               <div className="lg:col-span-7">
                 <div className="media relative aspect-[4/3] w-full overflow-hidden border border-rule-soft sm:aspect-[16/10]">
                   <Image
-                    src="/work/specter-citation.jpg"
-                    alt="SPECTER source viewer with a cited passage highlighted on the page."
+                    src="/work/specter-answer.jpg"
+                    alt="SPECTER answering a question with a structured, cited answer and a list of checked authorities."
                     fill
                     sizes="(min-width: 1024px) 58vw, 100vw"
                     className="object-cover object-left-top"
@@ -167,7 +198,10 @@ export default function HomePage() {
       </section>
 
       {/* 03 — services */}
-      <section id="services" className="scroll-mt-24 border-t border-rule-soft bg-paper-deep/60">
+      <section
+        id="services"
+        className="rule-field scroll-mt-24 border-t border-rule-soft bg-paper-deep/60"
+      >
         <div className="shell section-pad">
           <SectionHeading
             index="03"
@@ -194,14 +228,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 04 — figures */}
-      <section className="border-t border-rule-soft">
+      {/* 04 — figures, printed on bone stock */}
+      <section className="theme-bone paper-grain relative border-t border-rule-soft">
         <div className="shell section-pad">
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <p className="eyebrow">04 — In the systems</p>
             <p className="max-w-[42ch] text-[0.8125rem] leading-relaxed text-muted">
-              Numbers describe shipped work, not projections. Nothing here is a
-              client logo wall.
+              Numbers from the delivered systems, not projections. Each one has a
+              case study behind it.
             </p>
           </div>
 
@@ -274,7 +308,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-rule pb-5">
             <p className="eyebrow">06 — Capability index</p>
             <p className="max-w-[42ch] text-[0.8125rem] leading-relaxed text-muted">
-              Tools we have actually shipped with. Not a logo wall, and not
+              Tools used in the delivered systems. The list is selective, not
               exhaustive.
             </p>
           </div>
@@ -302,16 +336,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 07 — company */}
-      <section className="border-t border-rule-soft bg-paper-deep/60">
+      {/* 07 — the practice, with the founder on paper */}
+      <section className="theme-bone paper-grain relative border-t border-rule-soft">
         <div className="shell section-pad">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-6">
-              <p className="index-label">07 — The practice</p>
-              <h2 className="display mt-7 max-w-[18ch] text-[clamp(2.2rem,4.2vw,3.8rem)] leading-[1.0]">
-                An engineering practice, not a talent marketplace.
+          <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-4">
+            <p className="index-label">07 — The practice</p>
+            <p className="mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
+              Founder-led practice
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-8">
+            <ArchivePlate
+              className="lg:col-span-3"
+              src="/brand/founder.jpg"
+              width={1200}
+              height={1500}
+              alt="Portrait of Faizan Javed, founder of Fenvolt."
+              label="Faizan Javed"
+              caption="Founder and AI/ML engineer. Scopes the work, writes the retrieval pipelines, ships it."
+              credit="Lahore, Pakistan"
+              sizes="(min-width: 1024px) 22vw, 100vw"
+            />
+
+            <div className="lg:col-span-4 lg:col-start-5">
+              <h2 className="display max-w-[16ch] text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.0]">
+                An engineering company, run by its engineers.
               </h2>
-              <p className="mt-6 max-w-[44ch] text-[0.9375rem] leading-relaxed text-muted">
+              <p className="mt-6 max-w-[40ch] text-[0.9375rem] leading-relaxed text-muted">
                 Fenvolt is led by {site.founder}, who scopes the work and writes
                 the retrieval pipelines. The person who proposes the architecture
                 is the person who ships it.
@@ -321,7 +373,7 @@ export default function HomePage() {
               </ButtonLink>
             </div>
 
-            <ol className="lg:col-span-5 lg:col-start-8">
+            <ol className="lg:col-span-4 lg:col-start-9">
               {principles.slice(0, 3).map((principle) => (
                 <li key={principle.index} className="border-b border-rule-soft py-5 first:border-t">
                   <div className="flex items-baseline gap-4">

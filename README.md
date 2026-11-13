@@ -1,6 +1,6 @@
 # Fenvolt
 
-The company site for Fenvolt — an AI engineering and staff augmentation practice. Built as a static-first Next.js application with an editorial "engineering dossier" design system.
+The company site for Fenvolt — an engineering company in Lahore building capacity for product teams and AI systems for document-heavy work. Built as a static-first Next.js application with an editorial "engineering dossier" design system.
 
 ## Stack
 
@@ -29,13 +29,13 @@ npm run typecheck  # tsc --noEmit
 | `/work` | Three featured case studies + archive |
 | `/work/[slug]` | SPECTER, Document-Parser, OpsNexus |
 | `/company` | Philosophy, six principles, founder background, scope limits |
-| `/contact` | Validated enquiry form with honest fallback |
+| `/contact` | Validated enquiry form delivered by Resend |
 
 ## Content sources
 
-All professional claims come from the supplied CV (`sample/Faizan Javed.pdf`), the supplied project videos (`sample/brag.mp4`, `sample/OpsNexus_Final.mp4`) and the original logo (`sample/fenvolt-dp.png`). No clients, testimonials, certifications, accuracy figures or adoption numbers are invented. Where a metric was not supplied, the site describes architecture and constraints instead.
+All professional claims come from the supplied CV (`sample/Faizan Javed.pdf`), the supplied project videos (`sample/brag.mp4`, `sample/OpsNexus_Final.mp4`) and the original logo (`sample/fenvolt-dp.png`). Every project is presented as work delivered by Fenvolt. No testimonials, client logos, accuracy figures or adoption numbers have been added beyond what the supplied material supports.
 
-The two product stills in `public/work/` are frames from the supplied SPECTER demo. The diagrams are original SVG/HTML built from the described architecture.
+The product stills in `public/work/` are frames pulled from the supplied SPECTER reel, selected for the clearest view of the running application. The diagrams are original SVG/HTML built from the described architecture.
 
 ## Brand assets
 
@@ -46,7 +46,9 @@ The logo is never stretched, recoloured or replaced. On the ink footer the suppl
 
 ## Environment
 
-Copy `.env.example` to `.env.local`. Without the Resend variables the contact form still validates and composes the message, then offers a prefilled mailto; it does not claim to have sent anything.
+Copy `.env.example` to `.env.local`. The contact form posts to a server action, validates, and sends through Resend to `CONTACT_TO_EMAIL` with the visitor's address as reply-to. `RESEND_API_KEY` is required and `fenvolt.com` must be verified in Resend before mail will leave.
+
+If the key is absent the form does not claim to have sent anything: it composes the message and offers a prefilled mailto.
 
 ## Structure
 
@@ -62,7 +64,7 @@ src/
     forms/             contact form
   constants/           site, services, projects, case studies, company
   lib/                 metadata, contact validation, utils
-  assets/fonts/        Instrument Serif for the OG image
+  assets/fonts/        Archivo for the OG image
 sample/                supplied source material (not deployed)
 ```
 

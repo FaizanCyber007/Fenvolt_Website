@@ -222,9 +222,9 @@ export const fitCriteria = {
     "You are comfortable with a written scope before the build starts.",
   ],
   not: [
-    "You need twenty engineers by Monday.",
-    "You want a slide deck about AI transformation.",
-    "The success metric is a launch announcement, not a working system.",
-    "You need a model trained from scratch when retrieval would solve it.",
+    "Headcount by Monday, with no technical brief.",
+    "A strategy deck without a system behind it.",
+    "A launch announcement as the only success metric.",
+    "A model trained from scratch when retrieval would solve it.",
   ],
 };

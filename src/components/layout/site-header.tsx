@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { navigation, site } from "@/constants/site";
+import { elsewhereLinks, navigation, site } from "@/constants/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -76,9 +76,27 @@ export function SiteHeader() {
       data-open={open}
     >
       <div className="shell">
-        <div className="flex h-16 items-center justify-between gap-4 md:grid md:h-[5.25rem] md:grid-cols-[1fr_auto_1fr]">
+        <div className="flex h-16 items-center gap-5 md:h-[5.25rem] md:gap-8">
+          <Link
+            href="/"
+            aria-label={`${site.name} — home`}
+            className="flex shrink-0 items-center gap-2.5 text-[1.0625rem] font-semibold tracking-[-0.035em]"
+          >
+            <Image
+              src="/brand/fenvolt-chip@2x.png"
+              alt=""
+              width={32}
+              height={32}
+              priority
+              className="size-[1.55rem] shrink-0 md:size-7"
+            />
+            {site.name}
+          </Link>
+
+          <span aria-hidden="true" className="hidden h-3.5 w-px bg-rule md:block" />
+
           <nav aria-label="Primary" className="hidden md:block">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-7">
               {navigation.slice(0, 3).map((item) => (
                 <li key={item.href}>
                   <Link
@@ -93,26 +111,10 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <Link
-            href="/"
-            aria-label={`${site.name} — home`}
-            className="flex items-center gap-2.5 text-[1.0625rem] font-semibold tracking-[-0.035em]"
-          >
-            <Image
-              src="/brand/fenvolt-chip@2x.png"
-              alt=""
-              width={32}
-              height={32}
-              priority
-              className="size-[1.55rem] shrink-0 md:size-7"
-            />
-            {site.name}
-          </Link>
-
-          <div className="flex items-center justify-end gap-5">
-            <span className="hidden items-center gap-2 text-[0.75rem] text-muted xl:flex">
+          <div className="ml-auto flex items-center gap-5">
+            <span className="hidden items-center gap-2 text-[0.75rem] text-muted-strong xl:flex">
               <span aria-hidden="true" className="size-1.5 rounded-full border border-rule-strong" />
-              Taking work for Q1
+              Booking Q1 2027
             </span>
 
             <Link href="/contact" className="btn btn-sm hidden sm:inline-flex">
@@ -203,7 +205,7 @@ export function SiteHeader() {
                   <div>
                     <p className="eyebrow">Elsewhere</p>
                     <ul className="mt-3 space-y-2">
-                      {site.socials.map((social) => (
+                      {elsewhereLinks.map((social) => (
                         <li key={social.label}>
                           <a
                             href={social.href}
@@ -221,8 +223,8 @@ export function SiteHeader() {
                   <div>
                     <p className="eyebrow">Studio</p>
                     <p className="mt-3 max-w-[26ch] text-[0.875rem] leading-relaxed text-muted">
-                      {site.location}. Working remotely with teams in Europe, the
-                      Gulf and North America.
+                      {site.location}. Mon–Fri, 10:00–19:00 PKT. Studio visits by
+                      appointment.
                     </p>
                   </div>
                 </div>

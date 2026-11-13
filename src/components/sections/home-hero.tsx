@@ -9,12 +9,13 @@ import { serviceLinks } from "@/constants/site";
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden">
-      <PageFrame arc />
+      <PageFrame />
+      <div aria-hidden="true" className="hero-wash" />
 
       <div className="shell relative pt-24 md:pt-32">
         <div className="flex items-center justify-between gap-4 border-b border-rule-soft pb-3">
           <p className="eyebrow">AI engineering practice</p>
-          <p className="eyebrow hidden sm:block">Lahore · Working remotely</p>
+          <p className="eyebrow hidden sm:block">Lahore · Pakistan</p>
         </div>
 
         <div className="pt-[clamp(2.75rem,6vw,5.5rem)]">
@@ -80,14 +81,14 @@ export function HomeHero() {
       </div>
 
       <figure className="relative mt-[clamp(2.5rem,5vw,4.5rem)]">
-        <div className="shell">
-          <div className="media media-grain relative h-[clamp(15rem,46vw,34rem)] w-full border border-rule-soft">
+        <div className="shell grid gap-6 lg:grid-cols-12 lg:items-stretch lg:gap-8">
+          <div className="media media-grain relative aspect-[1584/884] w-full overflow-hidden border border-rule-soft lg:col-span-9">
             <Image
-              src="/work/specter-citation.jpg"
-              alt="SPECTER's source viewer: a cited passage highlighted on page 16 of a judgment, with the document file name and page count alongside it."
+              src="/work/specter-answer.jpg"
+              alt="SPECTER: a legal question answered with a conclusion, key rule, application and a numbered list of authorities, each checked against its source page."
               fill
               priority
-              sizes="100vw"
+              sizes="(min-width: 1024px) 70vw, 100vw"
               className="object-cover object-top"
             />
             <div
@@ -95,21 +96,42 @@ export function HomeHero() {
               className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/45 via-transparent to-transparent"
             />
           </div>
-        </div>
 
-        <figcaption className="shell mt-3 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 text-[0.75rem] text-muted">
-          <span className="max-w-[62ch]">
-            SPECTER — a citation checked against page 16 of the original
-            judgment before the answer is shown.
-          </span>
-          <Link
-            href="/work/specter"
-            className="arrow-link text-muted-strong hover:text-ink"
-          >
-            Open the case study
-            <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
-          </Link>
-        </figcaption>
+          <figcaption className="flex flex-col justify-between gap-6 border-rule-soft text-[0.75rem] text-muted lg:col-span-3 lg:border-l lg:pl-6">
+            <div>
+              <p className="eyebrow">SPECTER / cited answer</p>
+              <p className="mt-3 max-w-[34ch] text-[0.8125rem] leading-relaxed">
+                Every claim carries a numbered authority. Every citation is
+                checked against the page before the answer is shown.
+              </p>
+            </div>
+
+            <div>
+              <dl className="border-t border-rule-soft">
+                {[
+                  ["Corpus", "11,341 judgments"],
+                  ["Checked", "10 authorities"],
+                  ["Scripts", "Urdu · English · Roman"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-baseline justify-between gap-3 border-b border-rule-soft py-2"
+                  >
+                    <dt className="text-[0.6875rem] text-muted-faint">{label}</dt>
+                    <dd className="text-right text-[0.75rem] text-ink">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Link
+                href="/work/specter"
+                className="arrow-link mt-4 text-[0.8125rem] text-muted-strong hover:text-ink"
+              >
+                Open the case study
+                <ArrowUpRight aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
+              </Link>
+            </div>
+          </figcaption>
+        </div>
       </figure>
 
       <div className="shell relative mt-[clamp(2.5rem,4vw,3.5rem)]">

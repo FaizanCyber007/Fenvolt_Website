@@ -96,7 +96,7 @@ export default async function CaseStudyPage({ params }: Params) {
       <div className="shell mt-10 md:mt-14">
         {heroImage ? (
           <figure>
-            <div className="media media-grain relative aspect-[16/11] w-full overflow-hidden border border-rule-soft md:aspect-[2/1]">
+            <div className="media media-grain relative aspect-[1584/884] w-full overflow-hidden border border-rule-soft">
               <Image
                 src={heroImage.src}
                 alt={heroImage.alt}
@@ -209,12 +209,6 @@ export default async function CaseStudyPage({ params }: Params) {
                   </div>
                 ) : null}
 
-                {section.future ? (
-                  <p className="mt-6 max-w-[64ch] border-l border-rule-strong pl-4 text-[0.8125rem] leading-relaxed text-muted">
-                    No accuracy, latency or adoption figures are published here
-                    because none were supplied to this site.
-                  </p>
-                ) : null}
               </section>
             ))}
 

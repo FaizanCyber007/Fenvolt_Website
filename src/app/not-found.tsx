@@ -7,7 +7,7 @@ import { PageFrame } from "@/components/visuals/page-frame";
 export default function NotFound() {
   return (
     <section className="relative flex min-h-[88svh] items-center overflow-hidden">
-      <PageFrame arc />
+      <PageFrame />
 
       <div className="shell relative py-32">
         <div className="flex items-baseline justify-between border-b border-rule-soft pb-3">

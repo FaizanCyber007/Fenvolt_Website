@@ -7,14 +7,14 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpengraphImage() {
-  const [archivo, chip, citation] = await Promise.all([
+  const [archivo, chip, answer] = await Promise.all([
     readFile(join(process.cwd(), "src/assets/fonts/Archivo-Medium.woff")),
     readFile(join(process.cwd(), "public/brand/fenvolt-chip.png")),
-    readFile(join(process.cwd(), "public/work/specter-citation.jpg")),
+    readFile(join(process.cwd(), "public/work/specter-answer.jpg")),
   ]);
 
   const chipSrc = `data:image/png;base64,${chip.toString("base64")}`;
-  const citationSrc = `data:image/jpeg;base64,${citation.toString("base64")}`;
+  const answerSrc = `data:image/jpeg;base64,${answer.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -55,7 +55,7 @@ export default async function OpengraphImage() {
               color: "rgba(239,237,231,0.58)",
             }}
           >
-            AI engineering practice · Lahore
+            Engineering company · Lahore
           </span>
         </div>
 
@@ -112,12 +112,12 @@ export default async function OpengraphImage() {
                 color: "rgba(239,237,231,0.6)",
               }}
             >
-              <span>SPECTER / source viewer</span>
+              <span>SPECTER / cited answer</span>
               <span style={{ color: "#efede7" }}>Fig. 00</span>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={citationSrc}
+              src={answerSrc}
               alt=""
               width={362}
               height={222}
@@ -140,8 +140,8 @@ export default async function OpengraphImage() {
                 color: "rgba(239,237,231,0.6)",
               }}
             >
-              <span>Claim → page 16</span>
-              <span>Verified</span>
+              <span>Claim → source page</span>
+              <span>10 checked</span>
             </div>
           </div>
         </div>
