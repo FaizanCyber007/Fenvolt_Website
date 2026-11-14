@@ -55,10 +55,10 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
     return (
       <figure className="border border-rule-soft bg-[#0d0d0c]">
         <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft px-5 py-3 md:px-7">
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
             Fig. 02 — SPECTER system map
           </span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.12em] text-muted-faint">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
             Five lanes
           </span>
         </div>
@@ -78,7 +78,7 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
                 {lane.nodes.map((node) => (
                   <li
                     key={node}
-                    className="border-t border-rule-soft py-2 text-[0.6875rem] leading-tight text-muted last:border-b"
+                    className="border-t border-rule-soft py-2 text-[0.75rem] leading-tight text-muted last:border-b"
                   >
                     {node}
                   </li>
@@ -99,7 +99,7 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
             "Per-firm key",
             "PII masked in logs",
           ].map((item) => (
-            <span key={item} className="text-[0.6875rem] text-muted">
+            <span key={item} className="text-[0.75rem] text-muted">
               {item}
             </span>
           ))}
@@ -112,10 +112,10 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
     return (
       <figure className="border border-rule-soft bg-[#0d0d0c]">
         <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft px-5 py-3 md:px-7">
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
             Fig. 03 — parsing pipeline
           </span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.12em] text-muted-faint">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
             Seven phases
           </span>
         </div>
@@ -129,11 +129,11 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
                 i === 6 && "bg-ink/[0.035]",
               )}
             >
-              <span className="mono text-[0.5625rem] text-muted-faint">
+              <span className="mono text-[0.75rem] text-muted-faint">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-2 text-[0.8125rem] leading-tight text-ink">{phase.title}</h3>
-              <p className="mt-2 text-[0.6875rem] leading-[1.5] text-muted">{phase.body}</p>
+              <p className="mt-2 text-[0.75rem] leading-[1.5] text-muted">{phase.body}</p>
             </li>
           ))}
         </ol>
@@ -153,10 +153,10 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
   return (
     <figure className="border border-rule-soft bg-[#0d0d0c]">
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft px-5 py-3 md:px-7">
-        <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted">
+        <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
           Fig. 04 — agent routing
         </span>
-        <span className="mono text-[0.5625rem] uppercase tracking-[0.12em] text-muted-faint">
+        <span className="mono text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
           Supervisor + tools
         </span>
       </div>
@@ -170,7 +170,7 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
             <p className="mt-2 text-[0.8125rem] text-ink">
               Invoice · log · questionnaire
             </p>
-            <p className="mono mt-1 text-[0.5625rem] text-muted">pdf / docx / csv / txt</p>
+            <p className="mono mt-1 text-[0.75rem] text-muted">pdf / docx / csv / txt</p>
           </div>
 
           <span aria-hidden="true" className="hidden h-px w-6 bg-rule-strong md:block" />
@@ -180,7 +180,7 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
               Supervisor
             </p>
             <p className="mt-2 text-[0.8125rem] text-ink">Classifies, then routes</p>
-            <p className="mono mt-1 text-[0.5625rem] text-muted">
+            <p className="mono mt-1 text-[0.75rem] text-muted">
               structured output · strict schema
             </p>
           </div>
@@ -209,17 +209,17 @@ export function CaseFigure({ variant }: { variant: "specter" | "parser" | "agent
           <ol className="mt-3 grid gap-3 md:grid-cols-3">
             {trace.map((item, i) => (
               <li key={item.step} className="border-l border-rule-strong pl-3">
-                <span className="mono text-[0.5625rem] text-muted-faint">
+                <span className="mono text-[0.75rem] text-muted-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="mt-1 text-[0.75rem] leading-snug text-ink">{item.step}</p>
-                <p className="mono mt-1 text-[0.5625rem] text-muted">{item.meta}</p>
+                <p className="mono mt-1 text-[0.75rem] text-muted">{item.meta}</p>
               </li>
             ))}
           </ol>
         </div>
 
-        <p className="mono mt-5 border-t border-rule-soft pt-4 text-[0.5625rem] uppercase tracking-[0.1em] text-muted">
+        <p className="mono mt-5 border-t border-rule-soft pt-4 text-[0.75rem] uppercase tracking-[0.1em] text-muted">
           Output — discrepancies found · payment pending review · audit payload stored
         </p>
       </div>

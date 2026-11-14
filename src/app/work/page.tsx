@@ -98,7 +98,7 @@ export default function WorkPage() {
                     <p className="eyebrow">
                       {String(i + 1).padStart(2, "0")} — {project.category}
                     </p>
-                    <span className="mono shrink-0 text-[0.625rem] text-muted-faint">
+                    <span className="mono shrink-0 text-[0.6875rem] text-muted-faint">
                       Completed · {project.year}
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export default function WorkPage() {
                         key={metric.label}
                         className="flex items-baseline justify-between gap-4 border-b border-rule-soft py-2.5"
                       >
-                        <dt className="text-[0.6875rem] text-muted">{metric.label}</dt>
+                        <dt className="text-[0.75rem] text-muted">{metric.label}</dt>
                         <dd className="text-right text-[0.75rem] text-ink">{metric.value}</dd>
                       </div>
                     ))}
@@ -165,14 +165,14 @@ export default function WorkPage() {
             {archiveProjects.map((item, i) => (
               <Reveal key={item.title} as="li">
                 <div className="grid gap-3 border-b border-rule-soft py-5 sm:grid-cols-12 sm:gap-6">
-                  <span className="mono text-[0.5625rem] text-muted-faint sm:col-span-1">
+                  <span className="mono text-[0.75rem] text-muted-faint sm:col-span-1">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="sm:col-span-5">
                     <h3 className="max-w-[34ch] text-[0.9375rem] font-medium leading-snug">
                       {item.title}
                     </h3>
-                    <p className="mono mt-1.5 text-[0.5625rem] uppercase tracking-[0.06em] text-muted">
+                    <p className="mono mt-1.5 text-[0.75rem] uppercase tracking-[0.06em] text-muted">
                       {item.year} · {item.stack}
                     </p>
                   </div>

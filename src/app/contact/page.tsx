@@ -99,7 +99,7 @@ export default function ContactPage() {
               <h2 className="display text-[clamp(1.6rem,2.5vw,2rem)] leading-none">
                 Tell us about the work
               </h2>
-              <span className="mono text-[0.5625rem] uppercase text-muted-faint">
+              <span className="mono text-[0.75rem] uppercase text-muted-faint">
                 Form
               </span>
             </div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 {steps.map((step) => (
                   <li key={step.index} className="border-b border-rule-soft py-4">
                     <div className="flex items-baseline gap-3">
-                      <span className="mono text-[0.5625rem] text-muted-faint">
+                      <span className="mono text-[0.75rem] text-muted-faint">
                         {step.index}
                       </span>
                       <h3 className="text-[0.9375rem] font-medium">{step.title}</h3>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                 <p className="mt-3 text-[0.8125rem] leading-relaxed text-muted">
                   {site.location} — {site.hours}. Visits by appointment.
                 </p>
-                <p className="mono mt-2 text-[0.5625rem] uppercase tracking-[0.1em] text-muted-faint">
+                <p className="mono mt-2 text-[0.75rem] uppercase tracking-[0.1em] text-muted-faint">
                   {site.coordinates}
                 </p>
               </div>

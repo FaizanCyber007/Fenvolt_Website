@@ -25,15 +25,18 @@ export function BootSplash() {
 
   return (
     <div ref={ref} className="splash" aria-hidden="true">
-      <div className="splash-mark">
+      <div className="splash-mark flex flex-col items-center">
         <Image
           src="/brand/fenvolt-chip@2x.png"
           alt=""
           width={72}
           height={72}
-          className="size-14 md:size-16"
+          className="size-[4.5rem] mix-blend-screen md:size-20"
           priority
         />
+        <span className="mt-5 text-[0.8125rem] font-semibold uppercase tracking-[0.3em] text-ink">
+          Fenvolt
+        </span>
         <span className="splash-bar" />
       </div>
     </div>

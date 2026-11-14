@@ -2,7 +2,7 @@ export const site = {
   name: "Fenvolt",
   tagline: "Engineering capacity for the hard parts.",
   description:
-    "Fenvolt supplies senior engineers to product teams and builds AI systems — retrieval, document intelligence, and agent workflows — that run on real records.",
+    "Fenvolt is an engineering practice: senior engineers inside product teams, AI systems that run on real records, and the design, strategy and growth work around them.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://fenvolt.com",
   email: "hello@fenvolt.com",
   founderEmail: "faizan@fenvolt.com",
@@ -36,12 +36,12 @@ export const navigation = [
 ] as const;
 
 export const serviceLinks = [
+  { label: "Technology", href: "/services#technology" },
+  { label: "Experience & design", href: "/services#experience" },
+  { label: "Strategy & consulting", href: "/services#strategy" },
+  { label: "Product growth", href: "/services#growth" },
   { label: "Embedded engineers", href: "/services#embedded" },
-  { label: "Dedicated squads", href: "/services#squads" },
   { label: "Retrieval & RAG", href: "/services#rag" },
-  { label: "Document intelligence", href: "/services#documents" },
-  { label: "Agent workflows", href: "/services#agents" },
-  { label: "Backend & APIs", href: "/services#backend" },
 ] as const;
 
 export const socialLinks = site.socials;

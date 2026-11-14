@@ -81,7 +81,7 @@ export default async function CaseStudyPage({ params }: Params) {
           <dl className="grid grid-cols-2 gap-x-6 gap-y-5 lg:col-span-4 lg:col-start-9">
             {study.meta.map((item) => (
               <div key={item.label}>
-                <dt className="text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] font-medium uppercase tracking-[0.12em] text-muted-faint">
                   {item.label}
                 </dt>
                 <dd className="mt-1.5 text-[0.8125rem] leading-snug text-ink">
@@ -108,7 +108,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
             <figcaption className="mt-3 flex flex-wrap items-start justify-between gap-3 text-[0.75rem] leading-relaxed text-muted">
               <span className="max-w-[76ch]">{heroImage.caption}</span>
-              <span className="mono shrink-0 text-[0.5625rem] uppercase text-muted-faint">
+              <span className="mono shrink-0 text-[0.75rem] uppercase text-muted-faint">
                 Fig. 00
               </span>
             </figcaption>
@@ -131,7 +131,7 @@ export default async function CaseStudyPage({ params }: Params) {
                       className="group flex items-baseline justify-between gap-3 py-2.5 text-[0.8125rem] text-muted transition-colors hover:text-ink"
                     >
                       <span>{section.label}</span>
-                      <span className="mono text-[0.5625rem] text-muted-faint">
+                      <span className="mono text-[0.75rem] text-muted-faint">
                         {section.index}
                       </span>
                     </a>
@@ -166,7 +166,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 className="scroll-mt-28 border-t border-rule pb-12 pt-6 first:border-t-0 first:pt-0"
               >
                 <p className="index-label">
-                  <span className="mono text-[0.625rem]">{section.index}</span>
+                  <span className="mono text-[0.6875rem]">{section.index}</span>
                   {section.label}
                 </p>
 
@@ -227,7 +227,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   </div>
                   <figcaption className="mt-3 flex flex-wrap items-start justify-between gap-3 text-[0.75rem] leading-relaxed text-muted">
                     <span className="max-w-[70ch]">{study.evidence[0].caption}</span>
-                    <span className="mono shrink-0 text-[0.5625rem] uppercase text-muted-faint">
+                    <span className="mono shrink-0 text-[0.75rem] uppercase text-muted-faint">
                       Fig. 05
                     </span>
                   </figcaption>

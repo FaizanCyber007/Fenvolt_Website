@@ -31,7 +31,7 @@ export function SiteFooter() {
             />
             {site.name}
           </Link>
-          <p className="mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
+          <p className="mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">
             {site.location} · PKT (UTC+5)
           </p>
         </div>

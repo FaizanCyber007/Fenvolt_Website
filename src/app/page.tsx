@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { HomeHero } from "@/components/sections/home-hero";
-import { ServicesIndex } from "@/components/sections/services-index";
+import { PracticeGrid } from "@/components/sections/practice-grid";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Reveal } from "@/components/motion/reveal";
@@ -12,6 +12,7 @@ import { site } from "@/constants/site";
 import { ProjectPlate } from "@/components/visuals/project-plate";
 import { ArchivePlate } from "@/components/visuals/archive-plate";
 import { MotionPlate } from "@/components/visuals/motion-plate";
+import { Parallax } from "@/components/motion/parallax";
 
 const figures = [
   {
@@ -51,7 +52,7 @@ export default function HomePage() {
         <div className="shell section-pad">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-4">
             <p className="index-label">01 — Position</p>
-            <p className="mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
+            <p className="mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">
               The problem, not the model
             </p>
           </div>
@@ -86,7 +87,7 @@ export default function HomePage() {
                   alt="Detail of an imperial tughra: interlaced calligraphy over illuminated paper."
                 />
               </div>
-              <figcaption className="mt-3 border-t border-rule-soft pt-3 text-[0.6875rem] leading-relaxed text-muted">
+              <figcaption className="mt-3 border-t border-rule-soft pt-3 text-[0.75rem] leading-relaxed text-muted">
                 <span className="mono uppercase tracking-[0.1em] text-muted-strong">
                   Plate 01 — Tughra of Sultan Süleiman
                 </span>
@@ -144,7 +145,7 @@ export default function HomePage() {
                 <div>
                   <div className="flex items-baseline justify-between gap-4">
                     <p className="eyebrow">{specter.category}</p>
-                    <span className="mono text-[0.625rem] text-muted-faint">{specter.year}</span>
+                    <span className="mono text-[0.6875rem] text-muted-faint">{specter.year}</span>
                   </div>
                   <h3 className="display mt-5 text-[clamp(2.8rem,5vw,4.6rem)] leading-none tracking-[-0.055em]">
                     {specter.shortTitle}
@@ -177,7 +178,7 @@ export default function HomePage() {
 
                   <div className="mt-5 flex items-baseline justify-between gap-4">
                     <p className="eyebrow">{String(i + 2).padStart(2, "0")} — {project.category}</p>
-                    <span className="mono text-[0.625rem] text-muted-faint">{project.year}</span>
+                    <span className="mono text-[0.6875rem] text-muted-faint">{project.year}</span>
                   </div>
 
                   <h3 className="display mt-3 text-[clamp(1.7rem,2.5vw,2.35rem)] leading-none tracking-[-0.04em]">
@@ -197,6 +198,35 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* plate — a document older than the software reading it */}
+      <section
+        aria-label="Plate: a Mughal-era firman, seal, hand and margin"
+        className="border-t border-rule-soft"
+      >
+        <div className="media media-grain relative aspect-[16/10] w-full overflow-hidden sm:aspect-[21/9]">
+          <Parallax className="absolute inset-0">
+            <MotionPlate
+              src="/media/firman-loop.webm"
+              poster="/media/firman-poster.jpg"
+              alt="A slow pass across a 1649 Mughal firman: the seal at the head, the illuminated panel and the scribe's hand below."
+              sizes="100vw"
+            />
+          </Parallax>
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/55 via-transparent to-transparent"
+          />
+        </div>
+        <div className="shell flex flex-wrap items-baseline justify-between gap-3 py-4">
+          <p className="eyebrow">Plate 02 — Seal, hand and margin · 1649</p>
+          <p className="max-w-[58ch] text-[0.875rem] leading-relaxed text-muted">
+            The parts of a document that carry its authority are the parts an OCR
+            pass drops first. That is the argument for reading the page, not just
+            the text on it.
+          </p>
+        </div>
+      </section>
+
       {/* 03 — services */}
       <section
         id="services"
@@ -208,12 +238,12 @@ export default function HomePage() {
             label="What we do"
             title={
               <>
-                Capacity on the team,
+                Four practices.
                 <br />
-                <span className="display-dim">systems behind it.</span>
+                <span className="display-dim">Nine ways in.</span>
               </>
             }
-            note="Six ways in. Every engagement starts with the documents or the repository, not a deck."
+            note="Technology, design, strategy and growth — and nine detailed engagements inside them. Every one starts with the documents or the repository, not a deck."
             action={
               <Link href="/services" className="arrow-link text-[0.875rem] text-muted-strong hover:text-ink">
                 Services
@@ -223,7 +253,20 @@ export default function HomePage() {
           />
 
           <div className="mt-10 md:mt-14">
-            <ServicesIndex />
+            <PracticeGrid />
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-rule-soft pt-5">
+            <Link
+              href="/services"
+              className="arrow-link text-[0.875rem] text-muted-strong hover:text-ink"
+            >
+              All services, in detail
+            </Link>
+            <p className="text-[0.8125rem] text-muted-faint">
+              Each practice is listed with its five services, deliverables and
+              the engagement it is bought as.
+            </p>
           </div>
         </div>
       </section>
@@ -242,7 +285,7 @@ export default function HomePage() {
           <div className="col-rules mt-10 grid border-t border-rule sm:grid-cols-2 lg:grid-cols-4">
             {figures.map((figure, i) => (
               <div key={figure.value} className="border-b border-rule-soft pb-7 pt-6 lg:border-b-0 lg:pr-8 lg:pl-8 lg:first:pl-0">
-                <span className="mono text-[0.625rem] text-muted-faint">
+                <span className="mono text-[0.6875rem] text-muted-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="num mt-8 text-[clamp(2.9rem,5.2vw,4.6rem)] font-medium leading-none tracking-[-0.05em] lg:mt-16">
@@ -285,7 +328,7 @@ export default function HomePage() {
             <ol className="lg:col-span-7 lg:col-start-6">
               {approach.map((step) => (
                 <li key={step.index} className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-rule-soft py-6 first:border-t md:grid-cols-[3rem_1fr_auto] md:gap-6 md:py-7">
-                  <span className="mono pt-1 text-[0.625rem] text-muted-faint">{step.index}</span>
+                  <span className="mono pt-1 text-[0.6875rem] text-muted-faint">{step.index}</span>
                   <div>
                     <h3 className="text-[1.1875rem] font-medium tracking-[-0.015em]">{step.title}</h3>
                     <p className="mt-2 max-w-[48ch] text-[0.9375rem] leading-relaxed text-muted">
@@ -341,7 +384,7 @@ export default function HomePage() {
         <div className="shell section-pad">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-4">
             <p className="index-label">07 — The practice</p>
-            <p className="mono text-[0.625rem] uppercase tracking-[0.14em] text-muted">
+            <p className="mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted">
               Founder-led practice
             </p>
           </div>
@@ -377,7 +420,7 @@ export default function HomePage() {
               {principles.slice(0, 3).map((principle) => (
                 <li key={principle.index} className="border-b border-rule-soft py-5 first:border-t">
                   <div className="flex items-baseline gap-4">
-                    <span className="mono text-[0.625rem] text-muted-faint">{principle.index}</span>
+                    <span className="mono text-[0.6875rem] text-muted-faint">{principle.index}</span>
                     <div>
                       <h3 className="text-[1rem] font-medium">{principle.title}</h3>
                       <p className="mt-1.5 max-w-[42ch] text-[0.875rem] leading-relaxed text-muted">

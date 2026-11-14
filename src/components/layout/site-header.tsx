@@ -113,7 +113,10 @@ export function SiteHeader() {
 
           <div className="ml-auto flex items-center gap-5">
             <span className="hidden items-center gap-2 text-[0.75rem] text-muted-strong xl:flex">
-              <span aria-hidden="true" className="size-1.5 rounded-full border border-rule-strong" />
+              <span aria-hidden="true" className="relative flex size-1.5">
+                <span className="absolute inset-0 rounded-full bg-brand/35 blur-[2px]" />
+                <span className="relative size-1.5 rounded-full bg-brand" />
+              </span>
               Booking Q1 2027
             </span>
 
@@ -167,7 +170,7 @@ export function SiteHeader() {
                           className="group flex items-baseline justify-between gap-6 py-4 md:py-5"
                         >
                           <span className="flex items-baseline gap-4 md:gap-8">
-                            <span className="mono text-[0.625rem] text-muted-faint">
+                            <span className="mono text-[0.6875rem] text-muted-faint">
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             <span className="display text-[clamp(2.4rem,5vw,4.6rem)] leading-none tracking-[-0.05em] transition-colors group-hover:text-muted-strong">

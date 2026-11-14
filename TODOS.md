@@ -6,11 +6,15 @@
 - [ ] **Mailboxes.** The site publishes `hello@fenvolt.com` (new business) and `faizan@fenvolt.com` (founder, used on `/company`). Both need creating at the mail host, with SPF, DKIM and a DMARC record on the domain.
 - [ ] **LinkedIn.** `site.socials` points at `linkedin.com/in/faizan-javed-b0267426a`; `site.companyLinkedIn` at `linkedin.com/company/fenvolt`. Confirm the company page has been published.
 - [ ] **Company legal name and location.** The footer says "Lahore, Pakistan" and "Fenvolt". Confirm both.
-- [ ] **Contact delivery.** The action is wired to Resend and defaults to `hello@fenvolt.com`. Add `RESEND_API_KEY`, set `CONTACT_FROM_EMAIL` to an address on the verified domain, and verify `fenvolt.com` in Resend (SPF + DKIM). Until the key exists the form composes the message and offers a prefilled mailto rather than faking a send.
+- [x] **Contact delivery.** Verified end to end on both the Node server and the Workers runtime: a real message reached `hello@fenvolt.com` through Resend with `fenvolt.com` accepting the from-address. The key lives in `.env.local`; production still needs `npx wrangler secret put RESEND_API_KEY`.
+- [ ] **Cloudflare.** Follow `DEPLOY.md` end to end: `npx wrangler login`, `npx wrangler secret put RESEND_API_KEY`, `npm run cf:deploy`, then attach `fenvolt.com` plus a `www` redirect. The bundle builds clean, is ~1.5 MB gzipped, and was served locally by `wrangler dev` with all routes 200 — only the account login is missing.
 - [ ] **Office address.** `/company` currently states "visits by appointment — address shared on confirmation". Replace with a street address if one should be public.
 - [ ] **Booking link.** "Book a scoping call" points to `/contact`. If a Cal.com/Calendly account exists, swap the CTA target.
 
 ## Content that would strengthen the site
+
+- [ ] **Practice breadth.** `/services` now describes four practices — technology, experience, strategy and growth — with five services each, modelled on the breadth of comparable agencies. Confirm every listed service is genuinely offered or can be staffed, and trim anything that is aspirational.
+- [ ] **Section footage.** The six new loops are licensed stock, graded to match the site. Replace them with studio or product footage when it exists; stock is the weakest asset here.
 
 - [ ] A third-party reference or client quote (none are published, because none were supplied).
 - [ ] Public accuracy or latency measurements for SPECTER, with the evaluation set documented.

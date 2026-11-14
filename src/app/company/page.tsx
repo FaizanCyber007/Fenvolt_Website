@@ -9,6 +9,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { PageFrame } from "@/components/visuals/page-frame";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ArchivePlate } from "@/components/visuals/archive-plate";
+import { MediaBand } from "@/components/visuals/media-band";
 
 export const metadata: Metadata = pageMetadata({
   title: "Company",
@@ -82,25 +83,25 @@ export default function CompanyPage() {
 
             <dl className="grid grid-cols-2 gap-x-6 gap-y-5 lg:col-span-4 lg:col-start-7">
               <div>
-                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                   Founder
                 </dt>
                 <dd className="mt-1.5 text-[0.875rem]">{site.founder}</dd>
               </div>
               <div>
-                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                   Based
                 </dt>
                 <dd className="mt-1.5 text-[0.875rem]">Lahore · PKT (UTC+5)</dd>
               </div>
               <div>
-                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                   Focus
                 </dt>
                 <dd className="mt-1.5 text-[0.875rem]">Retrieval · Documents</dd>
               </div>
               <div>
-                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                   Model
                 </dt>
                 <dd className="mt-1.5 text-[0.875rem]">Embedded or fixed scope</dd>
@@ -150,7 +151,7 @@ export default function CompanyPage() {
             <div className="mt-10 grid gap-x-8 border-t border-rule-soft sm:grid-cols-2">
               {workingNotes.map((note) => (
                 <div key={note.label} className="border-b border-rule-soft py-4">
-                  <h3 className="text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted">
+                  <h3 className="text-[0.75rem] font-medium uppercase tracking-[0.12em] text-muted">
                     {note.label}
                   </h3>
                   <p className="mt-2 text-[0.875rem] leading-relaxed text-muted-strong">
@@ -162,6 +163,14 @@ export default function CompanyPage() {
           </div>
         </div>
       </section>
+
+      <MediaBand
+        src="/media/studio.webm"
+        poster="/media/studio.jpg"
+        alt="A working table in the studio: laptops, notebooks and printouts, with two people mid-conversation."
+        label="Plate — A working week in Lahore"
+        note="Documents on the table, the repository on screen, one written note at the end of the week. The office is small on purpose: the people who scope the work are the people in it."
+      />
 
       <section
         id="principles"
@@ -185,7 +194,7 @@ export default function CompanyPage() {
               <Reveal key={principle.index} as="li" delay={i * 0.03}>
                 <div className="h-full border-b border-rule-soft py-6 sm:pr-8 sm:[&:nth-child(2n)]:pl-8 sm:[&:nth-child(2n+1)]:border-r lg:[&:nth-child(2n)]:pl-0 lg:[&:nth-child(3n-1)]:px-8 lg:[&:nth-child(3n+1)]:pr-8">
                   <div className="flex items-baseline justify-between gap-3">
-                    <span className="mono text-[0.625rem] text-muted-faint">
+                    <span className="mono text-[0.6875rem] text-muted-faint">
                       {principle.index}
                     </span>
                     <span aria-hidden="true" className="h-px w-8 bg-rule" />
@@ -328,7 +337,7 @@ export default function CompanyPage() {
                   key={item.label}
                   className="border-b border-rule-soft py-4 sm:pr-6 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(even)]:pl-6"
                 >
-                  <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                  <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                     {item.label}
                   </dt>
                   <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink">
@@ -337,7 +346,7 @@ export default function CompanyPage() {
                 </div>
               ))}
               <div className="border-b border-rule-soft py-4 sm:col-span-2 sm:pr-6">
-                <dt className="text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+                <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-muted-faint">
                   Working with
                 </dt>
                 <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink">
@@ -381,7 +390,7 @@ export default function CompanyPage() {
                 key={item}
                 className="flex items-baseline gap-5 border-b border-rule-soft py-4 first:border-t"
               >
-                <span className="mono text-[0.5625rem] text-muted-faint">
+                <span className="mono text-[0.75rem] text-muted-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[0.9375rem] leading-relaxed text-muted-strong">

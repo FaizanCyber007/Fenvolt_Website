@@ -1,0 +1,5 @@
+# Local Cloudflare dev secrets — copy to .dev.vars (gitignored).
+# Production values are set with `wrangler secret put RESEND_API_KEY`.
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=hello@fenvolt.com
+CONTACT_FROM_EMAIL=Fenvolt Website <hello@fenvolt.com>

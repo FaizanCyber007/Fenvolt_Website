@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 /**
  * Chapter header used across the site: index, rule, oversized title and an
@@ -26,13 +27,13 @@ export function SectionHeading({
     <div id={id} className={cn("border-t border-rule pt-4", className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <p className="index-label">
-          <span className="mono text-[0.6875rem] tracking-[0.06em]">{index}</span>
+          <span className="mono text-[0.75rem] tracking-[0.06em]">{index}</span>
           {label}
         </p>
         {action}
       </div>
 
-      <div className="mt-7 grid gap-6 md:mt-10 lg:grid-cols-12 lg:gap-8">
+      <Reveal className="mt-7 grid gap-6 md:mt-10 lg:grid-cols-12 lg:gap-8" y={12}>
         <h2 className="display col-span-full text-[clamp(2.35rem,4.7vw,4.3rem)] leading-[0.97] lg:col-span-8">
           {title}
         </h2>
@@ -41,7 +42,7 @@ export function SectionHeading({
             {note}
           </div>
         ) : null}
-      </div>
+      </Reveal>
     </div>
   );
 }

@@ -53,7 +53,7 @@ export function ArchivePlate({
         />
       </div>
 
-      <figcaption className="mt-3 border-t border-rule-soft pt-3 text-[0.6875rem] leading-relaxed text-muted">
+      <figcaption className="mt-3 border-t border-rule-soft pt-3 text-[0.75rem] leading-relaxed text-muted">
         <span className="mono uppercase tracking-[0.1em] text-muted-strong">
           {label}
         </span>

@@ -32,10 +32,10 @@ export function ProjectPlate({
         )}
       >
         <div className="flex items-baseline justify-between gap-4 border-b border-rule-soft pb-3">
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
             2014LHC1525.pdf
           </span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted-faint">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted-faint">
             24 pages
           </span>
         </div>
@@ -53,7 +53,7 @@ export function ProjectPlate({
                 <span className="mono mt-2 text-[0.5rem] uppercase tracking-[0.08em] text-muted-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="mt-1 text-[0.5625rem] leading-tight text-muted">
+                <span className="mt-1 text-[0.75rem] leading-tight text-muted">
                   {phase}
                 </span>
               </div>
@@ -72,8 +72,8 @@ export function ProjectPlate({
         </div>
 
         <div className="flex items-baseline justify-between gap-4 border-t border-rule-soft pt-3">
-          <span className="text-[0.6875rem] text-muted-strong">Seven phases</span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.1em] text-muted">
+          <span className="text-[0.75rem] text-muted-strong">Seven phases</span>
+          <span className="mono text-[0.75rem] uppercase tracking-[0.1em] text-muted">
             Self-correction
           </span>
         </div>
@@ -91,10 +91,10 @@ export function ProjectPlate({
         )}
       >
         <div className="flex items-baseline justify-between gap-4 border-b border-rule-soft pb-3">
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
             Document intake
           </span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.14em] text-muted-faint">
+          <span className="mono text-[0.75rem] uppercase tracking-[0.14em] text-muted-faint">
             Supervisor
           </span>
         </div>
@@ -104,7 +104,7 @@ export function ProjectPlate({
             {["Invoice", "Security log", "Questionnaire"].map((item) => (
               <li
                 key={item}
-                className="border border-rule-soft px-2 py-1.5 text-[0.5625rem] uppercase tracking-[0.08em] text-muted"
+                className="border border-rule-soft px-2 py-1.5 text-[0.75rem] uppercase tracking-[0.08em] text-muted"
               >
                 {item}
               </li>
@@ -114,7 +114,7 @@ export function ProjectPlate({
           <span className="h-px w-3 bg-rule-strong sm:w-5" />
 
           <div className="border border-rule-strong bg-ink/[0.06] p-2.5">
-            <p className="text-[0.5625rem] uppercase tracking-[0.1em] text-ink">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-ink">
               Route
             </p>
             <p className="mt-1 text-[0.5rem] leading-tight text-muted">
@@ -141,8 +141,8 @@ export function ProjectPlate({
         </div>
 
         <div className="flex items-baseline justify-between gap-4 border-t border-rule-soft pt-3">
-          <span className="text-[0.6875rem] text-muted-strong">Auditable payload</span>
-          <span className="mono text-[0.5625rem] uppercase tracking-[0.1em] text-muted">
+          <span className="text-[0.75rem] text-muted-strong">Auditable payload</span>
+          <span className="mono text-[0.75rem] uppercase tracking-[0.1em] text-muted">
             5 discrepancies
           </span>
         </div>
@@ -161,7 +161,7 @@ export function ProjectPlate({
             <span className="mono text-[0.5rem] uppercase tracking-[0.1em] text-muted">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <span className="mt-2 text-[0.625rem] leading-tight text-muted-strong">{lane}</span>
+            <span className="mt-2 text-[0.6875rem] leading-tight text-muted-strong">{lane}</span>
           </div>
         ))}
       </div>

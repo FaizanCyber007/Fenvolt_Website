@@ -14,11 +14,14 @@ import { site } from "@/constants/site";
 import { ButtonLink } from "@/components/ui/button-link";
 import { PageFrame } from "@/components/visuals/page-frame";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { PracticeChapters } from "@/components/sections/practice-chapters";
+import { MediaBand } from "@/components/visuals/media-band";
+import { practices } from "@/constants/practices";
 
 export const metadata: Metadata = pageMetadata({
   title: "Services",
   description:
-    "Embedded engineers, dedicated squads and fixed-scope AI builds: retrieval, document intelligence, agent workflows, backend services and evaluation.",
+    "Four practices — technology, experience, strategy and growth — with nine detailed engagements inside them: embedded engineers, squads, retrieval, document intelligence, agent workflows and evaluation.",
   path: "/services",
 });
 
@@ -66,7 +69,7 @@ function ServiceChapter({
                 key={item}
                 className="flex gap-4 border-b border-rule-soft py-3.5 text-[0.875rem] leading-relaxed text-muted"
               >
-                <span className="mono pt-1 text-[0.5625rem] text-muted-faint">
+                <span className="mono pt-1 text-[0.75rem] text-muted-faint">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span>{item}</span>
@@ -122,27 +125,27 @@ export default function ServicesPage() {
         <div className="shell relative page-top">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule-soft pb-3">
             <p className="eyebrow">Services</p>
-            <p className="eyebrow hidden sm:block">Capacity · Applied AI</p>
+            <p className="eyebrow hidden sm:block">Four practices · Nine engagements</p>
           </div>
 
           <h1 className="display mt-8 text-[clamp(2.9rem,7.4vw,7rem)] leading-[0.9] tracking-[-0.055em]">
-            Nine ways in.
+            Four practices.
             <br />
-            <span className="display-dim">One practice.</span>
+            <span className="display-dim">One accountable team.</span>
           </h1>
 
           <div className="mt-10 grid gap-8 border-t border-rule-soft pt-7 lg:grid-cols-12 lg:gap-8">
-            <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-muted-strong lg:col-span-5">
-              Three ways to add engineering capacity, six fixed-scope AI builds.
-              The split matters: one is a person inside your process, the other
-              is a system handed over documented.
+            <p className="max-w-[48ch] text-[0.9375rem] leading-relaxed text-muted-strong lg:col-span-5">
+              Technology, experience, strategy and growth: the whole path from a
+              rough problem to a system people use. Nine detailed engagements sit
+              inside that, each with its own method and a written scope.
             </p>
 
             <div className="lg:col-span-3 lg:col-start-7">
               <p className="eyebrow">Engagements</p>
               <p className="mt-3 text-[0.875rem] leading-relaxed text-muted">
-                Month to month, defined milestones, or a fixed-scope build with a
-                written estimate.
+                Month to month, defined milestones, a fixed-scope build, or a
+                short assessment with a document at the end.
               </p>
             </div>
 
@@ -154,10 +157,68 @@ export default function ServicesPage() {
       </section>
 
       <section className="shell py-[clamp(3.5rem,6vw,6rem)]">
+        <SectionHeading
+          index="01"
+          label="What we do"
+          title={
+            <>
+              The work around a system,
+              <br />
+              <span className="display-dim">not just the code.</span>
+            </>
+          }
+          note="Each practice can be bought on its own. Most builds use two or three of them, and the same lead stays on the account throughout."
+        />
+
+        <div className="mt-12 lg:mt-16">
+          <PracticeChapters />
+        </div>
+      </section>
+
+      <MediaBand
+        src="/media/ink.webm"
+        poster="/media/ink.jpg"
+        alt="Black ink spreading through pale water in slow motion."
+        label="Plate — Every system is a reading problem first"
+        note="A document, a repository, a dashboard: someone has to read it before it can be automated. The rest is plumbing and judgement."
+      />
+
+      <section id="capacity" className="shell scroll-mt-24 py-[clamp(3.5rem,6vw,6rem)]">
+        <div className="mb-10 border-b border-rule pb-5 lg:mb-14">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <p className="eyebrow">02 — The nine engagements</p>
+            <p className="mono text-[0.6875rem] uppercase tracking-[0.12em] text-muted-faint">
+              Scope · Method · Handover
+            </p>
+          </div>
+          <h2 className="display mt-6 max-w-[18ch] text-[clamp(2.1rem,3.6vw,3.1rem)] leading-[1.0]">
+            The deep end of
+            <br />
+            <span className="display-dim">the four practices.</span>
+          </h2>
+        </div>
+
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           <aside className="hidden lg:col-span-2 lg:block">
             <nav aria-label="Service index" className="sticky top-28">
-              <p className="eyebrow">Index</p>
+              <p className="eyebrow">Practices</p>
+              <ol className="mt-4 border-t border-rule-soft">
+                {practices.map((practice) => (
+                  <li key={practice.id} className="border-b border-rule-soft">
+                    <a
+                      href={`#${practice.id}`}
+                      className="group flex gap-2.5 py-2 text-[0.75rem] leading-snug text-muted transition-colors hover:text-ink"
+                    >
+                      <span className="mono text-[0.75rem] text-muted-faint">
+                        {practice.index}
+                      </span>
+                      <span>{practice.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+
+              <p className="eyebrow mt-6">Engagements</p>
               <ol className="mt-4 border-t border-rule-soft">
                 {allServices.map((service) => (
                   <li key={service.id} className="border-b border-rule-soft">
@@ -165,7 +226,7 @@ export default function ServicesPage() {
                       href={`#${service.id}`}
                       className="group flex gap-2.5 py-2 text-[0.75rem] leading-snug text-muted transition-colors hover:text-ink"
                     >
-                      <span className="mono text-[0.5625rem] text-muted-faint">
+                      <span className="mono text-[0.75rem] text-muted-faint">
                         {service.index}
                       </span>
                       <span>{service.name}</span>
@@ -181,7 +242,7 @@ export default function ServicesPage() {
               <h2 className="display text-[clamp(1.9rem,3.2vw,2.9rem)] leading-none">
                 Capacity
               </h2>
-              <span className="mono text-[0.625rem] text-muted">A1 — A3</span>
+              <span className="mono text-[0.6875rem] text-muted">A1 — A3</span>
             </div>
             <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-muted">
               Engineers who join the team and work in your repository, under your
@@ -198,7 +259,7 @@ export default function ServicesPage() {
               <h2 className="display text-[clamp(1.9rem,3.2vw,2.9rem)] leading-none">
                 Applied AI
               </h2>
-              <span className="mono text-[0.625rem] text-muted">B1 — B6</span>
+              <span className="mono text-[0.6875rem] text-muted">B1 — B6</span>
             </div>
             <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-muted">
               Fixed-scope systems that run on real records. Architecture,
@@ -227,7 +288,12 @@ export default function ServicesPage() {
             note="Same engineers, same review process. The shape changes with what you need to staff."
           />
 
-          <div className="mt-10 overflow-x-auto">
+          <div
+            className="mt-10 overflow-x-auto"
+            role="region"
+            aria-label="Engagement models — scrollable table"
+            tabIndex={0}
+          >
             <table className="spec-table min-w-[46rem]">
               <thead>
                 <tr>

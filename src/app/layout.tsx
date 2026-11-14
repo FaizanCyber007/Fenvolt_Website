@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { BootSplash } from "@/components/ui/boot-splash";
 import { site } from "@/constants/site";
 import { absoluteUrl } from "@/lib/utils";
@@ -26,7 +27,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} — Engineering capacity`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <BootSplash />
         <SmoothScroll />
+        <ScrollProgress />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />

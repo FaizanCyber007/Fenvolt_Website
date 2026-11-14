@@ -55,7 +55,7 @@ export function HomeHero() {
                     className="group flex items-baseline justify-between gap-4 py-2.5 text-[0.9375rem] text-muted-strong transition-colors hover:text-ink"
                   >
                     <span className="flex items-baseline gap-3">
-                      <span className="mono text-[0.625rem] text-muted-faint">
+                      <span className="mono text-[0.6875rem] text-muted-faint">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       {service.label}
@@ -117,7 +117,7 @@ export function HomeHero() {
                     key={label}
                     className="flex items-baseline justify-between gap-3 border-b border-rule-soft py-2"
                   >
-                    <dt className="text-[0.6875rem] text-muted-faint">{label}</dt>
+                    <dt className="text-[0.75rem] text-muted-faint">{label}</dt>
                     <dd className="text-right text-[0.75rem] text-ink">{value}</dd>
                   </div>
                 ))}

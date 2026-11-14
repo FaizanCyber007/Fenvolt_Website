@@ -3,7 +3,9 @@
 /* ------------------------------------------------------------------
    Fenvolt — art direction
    One grotesque. Near-black ground. Bone text. Hairline construction.
-   No gradients, no glass, no accent colour: the work supplies the colour.
+   One colour, borrowed from the mark: a cyan thread through focus states,
+   selection, the scroll read-out and small index ticks. Everything else is
+   ink, bone and the work itself.
 ------------------------------------------------------------------ */
 :root {
   --paper: #0a0a0a;
@@ -14,17 +16,22 @@
   --deep: #060606;
   --ink: #efede7;
   --ink-raised: #ffffff;
-  --muted: #8d8c86;
-  --muted-strong: #b8b6ae;
-  --muted-faint: #807f79;
+  --muted: #a3a19a;
+  --muted-strong: #c9c7c0;
+  --muted-faint: #8f8d86;
   --rule: rgba(239, 237, 231, 0.14);
   --rule-soft: rgba(239, 237, 231, 0.075);
   --rule-strong: rgba(239, 237, 231, 0.3);
   --accent: #efede7;
   --accent-ink: #efede7;
   --warm: rgba(239, 237, 231, 0.32);
-  --display-dim: #74736b;
-  --chapter-num: #62615b;
+  --display-dim: #8a887f;
+  --chapter-num: #6f6e67;
+  /* The one colour on the site: the cyan in the Fenvolt mark, used only for
+     focus, selection, the scroll read-out and hairline ticks. */
+  --brand: #06c2e1;
+  --brand-soft: rgba(6, 194, 225, 0.22);
+  --focus: var(--brand);
   --error: #f0c3b6;
   --page-max: 1680px;
   --gutter: clamp(1.25rem, 3.4vw, 3.5rem);
@@ -49,6 +56,7 @@
   --color-rule-strong: var(--rule-strong);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  --color-brand: var(--brand);
   --color-warm: var(--warm);
 
   --font-sans: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -91,7 +99,8 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
-  line-height: 1.5;
+  line-height: 1.58;
+  letter-spacing: 0.002em;
   font-weight: 400;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   text-rendering: optimizeLegibility;
@@ -101,8 +110,8 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-soft);
+  color: var(--ink);
 }
 
 h1,
@@ -130,7 +139,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--focus);
   outline-offset: 4px;
   border-radius: 1px;
 }
@@ -186,24 +195,24 @@ svg {
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .lede {
-  font-size: clamp(1.0625rem, 1.15vw, 1.25rem);
-  line-height: 1.5;
+  font-size: clamp(1.125rem, 1.2vw, 1.3125rem);
+  line-height: 1.58;
   color: var(--muted-strong);
 }
 
 .mono {
   font-family: var(--font-mono);
   font-variant-ligatures: none;
-  font-size: 0.6875rem;
-  letter-spacing: 0.02em;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
 }
 
 .serif {
@@ -393,9 +402,9 @@ svg {
   display: flex;
   align-items: baseline;
   gap: 0.7rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -404,8 +413,8 @@ svg {
   content: "";
   width: 1.5rem;
   height: 1px;
-  background: var(--ink);
-  opacity: 0.4;
+  background: var(--brand);
+  opacity: 0.85;
   transform: translateY(-3px);
   flex: none;
 }
@@ -419,7 +428,7 @@ svg {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.25rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -441,11 +450,11 @@ svg {
 .spec-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 
 .spec-table th {
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -470,10 +479,10 @@ svg {
 /* long-form prose */
 .prose-fv p {
   color: var(--muted-strong);
-  margin-top: 1.15rem;
+  margin-top: 1.25rem;
   max-width: 64ch;
-  font-size: 1.0625rem;
-  line-height: 1.62;
+  font-size: 1.125rem;
+  line-height: 1.68;
 }
 
 .prose-fv p:first-child {
@@ -533,25 +542,28 @@ svg {
   --plate: #d9d4c6;
   --ink: #14130f;
   --ink-raised: #000000;
-  --muted: #55544c;
-  --muted-strong: #37362f;
-  --muted-faint: #5f5e56;
+  --muted: #4a4942;
+  --muted-strong: #2b2a24;
+  --muted-faint: #55544c;
   --rule: rgba(20, 19, 15, 0.24);
   --rule-soft: rgba(20, 19, 15, 0.14);
   --rule-strong: rgba(20, 19, 15, 0.44);
   --accent: #14130f;
   --accent-ink: #14130f;
   --warm: rgba(20, 19, 15, 0.3);
-  --display-dim: #7c7a6f;
+  --display-dim: #6f6d63;
   --chapter-num: #bab6a7;
+  --brand: #0891a8;
+  --brand-soft: rgba(8, 145, 168, 0.18);
+  --focus: var(--ink);
   --error: #9a3324;
   background-color: var(--paper);
   color: var(--ink);
 }
 
 .theme-bone ::selection {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-soft);
+  color: var(--ink);
 }
 
 /* buttons carry the ink fill when the stock is light */
@@ -680,7 +692,7 @@ svg {
   position: relative;
   display: inline-block;
   padding-block: 0.4rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.005em;
   color: var(--muted-strong);
@@ -755,12 +767,12 @@ svg {
   display: grid;
   place-items: center;
   background: var(--deep);
-  animation: splash-out 0.65s var(--ease) 0.55s forwards;
+  animation: splash-out 0.75s var(--ease) 1.95s forwards;
 }
 
 .splash-mark {
   position: relative;
-  animation: splash-mark 1.4s var(--ease) forwards;
+  animation: splash-mark 1.9s var(--ease) forwards;
 }
 
 .splash-bar {
@@ -770,9 +782,9 @@ svg {
   width: 84px;
   height: 1px;
   translate: -50% 0;
-  background: var(--ink);
+  background: var(--brand);
   transform-origin: left;
-  animation: splash-bar 0.9s var(--ease) 0.1s forwards;
+  animation: splash-bar 1.4s var(--ease) 0.2s forwards;
 }
 
 @keyframes splash-bar {
@@ -906,7 +918,7 @@ body[data-menu-open="true"] {
 @layer components {
 .field-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--muted-strong);

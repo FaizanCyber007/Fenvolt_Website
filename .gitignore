@@ -54,3 +54,8 @@ next-env.d.ts
 /sample
 /.scratch
 *.mp4
+
+# cloudflare
+.open-next/
+.wrangler/
+.dev.vars

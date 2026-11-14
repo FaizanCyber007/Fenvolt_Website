@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fenvolt-site",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "fenvolt-site"
+    }
+  ],
+  "vars": {
+    "CONTACT_TO_EMAIL": "hello@fenvolt.com",
+    "CONTACT_FROM_EMAIL": "Fenvolt Website <hello@fenvolt.com>"
+  }
+  // Custom domain: add it in the Cloudflare dashboard (Workers → fenvolt-site →
+  // Settings → Domains & Routes), or uncomment and set the zone yourself:
+  // "routes": [{ "pattern": "fenvolt.com", "custom_domain": true }]
+}
